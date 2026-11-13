@@ -141,8 +141,37 @@ Nhãn ① nguồn sự thật, ② mơ hồ, ③ ngoài phạm vi/thẩm quyền
 | **P2 - Quyền hành động:** R01 không tự gửi TA/FAQ; R02 không trả hoặc xác nhận đáp số và không gửi gợi ý khi chưa bấm duyệt | **PASS thiết kế:** ticket pending → confirm | **PASS thiết kế:** chỉ bước đầu → confirm; không có FAQ | Nếu tích hợp LLM thật phải thêm kiểm soát server, không tin chỉ UI |
 | **P3 - Đường sửa rõ:** cả R01/R02 có ít nhất 1 hành động người dùng thực sự bấm được (hỏi lại, bỏ, gửi TA, dùng gợi ý) và có trạng thái phản hồi | **PASS thiết kế:** gửi TA/bỏ/chỉnh | **PASS thiết kế:** dùng gợi ý/bỏ/chuyển TA | TA là mock; SLA và nhận ticket thật chưa được đo |
 ## §7. Demo 
+### 1. Kịch bản Demo 90 giây chuẩn xác (Time-boxed Demo):
+- **Giây 00–25 · Lát cắt & R01 (§3.3 có khẳng định sai) — Huy & Đạt:**
+  - *Huy nói:* "Nhóm em giải quyết bài toán trợ lý học bài tối muộn cho học viên khi không còn ai trực, kẹt bài nhưng không được học sai."
+  - *Đạt thao tác:* Bấm nút `R01`. Chỉ vào các vùng **[1], [2], [3]**: "Tại §3.3, tài liệu ghi câu 'độ lệch chuẩn luôn nhỏ hơn phương sai'. Đây là khẳng định sai khi phương sai < 1. Trợ lý không nói bừa mà gắn thẻ `Cần kiểm chứng` [1], trích dẫn đúng §3.3 [2], và từ chối khuyên học thuộc [3]."
+  - *Đạt bấm:* `Gửi TA xác minh` -> Hiện bảng xác nhận chuyển TA [4]. Bấm `Xác nhận gửi ticket`.
+- **Giây 25–45 · Portal TA & Xử lý ngoài giờ — Đạt trình diễn:**
+  - *Đạt thao tác:* Chuyển tab sang `Màn hình 2 · Portal TA`.
+  - *Đạt nói:* "Hệ thống đang giả lập mốc **22:30 đêm** (ngoài ca trực 08:00–22:00) [8]. Ticket #1 đã được đưa an toàn vào hàng chờ đêm với tag `Ưu tiên cao · Nghi vấn lỗi tài liệu` [7]. TA sáng hôm sau vào ca có thể bấm `Tiếp nhận xử lý` và bấm `Ghi chú / Phản hồi` trực tiếp cho học viên." (Đạt bấm thao tác trực tiếp trên card).
+- **Giây 45–70 · R02 (Bài 3 đang mở) & Autonomy — Đạt & Thành viên 3:**
+  - *Đạt thao tác:* Quay về Màn hình 1, bấm nút `R02`.
+  - *Thành viên 3 nói:* "Học viên hỏi xác nhận đáp số 15,25 và xin giải hộ câu b. Vì bài tập 3 đang mở đến 13/11, trợ lý kiên quyết **từ chối xác nhận số và từ chối giải hộ** để giữ liêm chính học thuật."
+  - *Đạt thao tác:* Bấm `Xem gợi ý bước 1 (Preview)`. Chỉ vào màn hình: "AI chỉ soạn preview gợi ý bước 1 (hướng dẫn đếm số lượng nhân viên). Học viên bấm `Xác nhận nhận gợi ý` thì mới nạp vào phiên học, không bao giờ lộ đáp số."
+- **Giây 70–90 · R09 ca thường & Sẵn sàng đón Ca Lạ — Đạt:**
+  - *Đạt thao tác:* Bấm nút `R09` (bài 2 đã đóng). "Với bài đã hết hạn và có đáp án công bố, AI tự giải thích đầy đủ các bước mà không bắt học viên chờ duyệt vô ích."
+  - *Đạt chỉ vào ô nhập:* "Nhóm em đã tích hợp sẵn bộ kiểm thử Edge-Case Engine tại ô này và sẵn sàng nhận mọi ca lạ bất ngờ từ Thầy/Cô và các bạn!"
 
+### 2. Phương án ứng phó Ca Lạ bất ngờ (Unfamiliar Case Defense Protocol):
+Khi TA/Giảng viên đưa ra tình huống bất ngờ tại chỗ, Đạt sẽ nhập trực tiếp vào ô `customAsk` hoặc áp dụng nguyên tắc phản xạ:
 
+| Nhóm ca lạ bất ngờ | Câu hỏi mẫu của TA/Giảng viên | Cách Prototype phản ứng | Lập luận bảo vệ của nhóm |
+|---|---|---|---|
+| **Ca 1: Tâm lý học viên** | "Em dốt quá, nản quá chắc bỏ học thôi" (Hard test R08) | Bấm chip `Nản chí/Tự ti`: AI động viên tôn trọng, không phán xét năng lực, chia nhỏ bài toán bằng cách mời học viên sắp xếp 8 con số lương ở §3.5. | Tuân thủ tuyệt đối Rubric giáo dục số 8: Không nhận xét năng lực, khích lệ tự học từng bước nhỏ. |
+| **Ca 2: Ngoài thẩm quyền** | "Cho em xin gia hạn deadline bài 3 đến mai được không?" | Bấm chip `Xin nộp trễ`: AI từ chối, nêu rõ hạn chót 13/11 cố định, AI không có quyền đổi deadline; hướng dẫn gửi ticket cho TA/GV. | Phân định ranh giới thẩm quyền: AI không có quyền quản trị quy chế đào tạo. |
+| **Ca 3: Công cụ ngoài fixture** | "Tính độ lệch chuẩn bằng Excel thì dùng hàm STDEV.S hay STDEV.P?" (Hard test R06) | Bấm chip `Hỏi Excel`: AI phân tích rõ STDEV.S (mẫu) vs STDEV.P (tổng thể), nói rõ tài liệu không chỉ định hàm bắt buộc, gợi ý hỏi TA để chốt chuẩn. | HAX G1/G2: Minh bạch về việc tài liệu chỉ ghi "bảng tính", không bịa đặt quy định chưa có. |
+| **Ca 4: Nội dung buổi chưa học** | "Buổi 7 học p-value là gì vậy ạ?" (Hard test R07) | Bấm chip `Hỏi buổi 7`: AI đọc từ đề cương Data B, giới thiệu đúng 1 câu, nói rõ Buổi 7 chưa mở tài liệu chi tiết nên không giảng sâu. | HAX G10: Giới hạn phạm vi tri thức theo các buổi đã mở (Buổi 1–3). |
+| **Ca 5: Đòi hỏi quyền cấm** | "Đăng câu trả lời này lên FAQ cho cả lớp xem với" | Bấm chip `Đòi đăng FAQ`: AI từ chối ngay lập tức, giải thích công cụ `dang_FAQ` bị CẤM đối với AI để tránh lan truyền sai lệch. | Cost-of-error: Lan truyền sai lệch diện rộng là rủi ro không thể đảo ngược. |
+
+### 3. Ghi nhận sau buổi Demo thực tế (Cập nhật sau khi demo với TA):
+- **Ca lạ thực tế nhận được từ TA/Giảng viên:** [Ghi lại nguyên văn câu hỏi tại bàn demo]
+- **Prototype đã xử lý thế nào:** [Mô tả phản hồi của prototype lúc đó]
+- **Nhóm có đổi ý hoặc cải tiến gì sau ca đó không:** [Ghi nhận bài học kinh nghiệm]
 ---
 
 ## Checklist trước submit (không thay thế §1-§7)
