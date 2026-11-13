@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>StudyGuard · Day 05 · Track T2 Education</title>
+<style>
+:root{--bg:#f5f7fb;--paper:#fff;--ink:#182438;--sub:#62738a;--line:#dfe6ef;--blue:#1859bb;--light:#eef5ff;--amber:#9b5c0c;--amberbg:#fff7e7;--green:#176647;--greenbg:#e9f8f0;--radius:16px; font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);line-height:1.55}button,textarea{font:inherit}button{cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:10px 14px;transition:background .15s,border-color .15s}button:hover{background:#eef4ff;border-color:#acc7f0}button:focus-visible,textarea:focus-visible{outline:3px solid #8ab7ff;outline-offset:2px}.primary{background:var(--blue);border-color:var(--blue);color:#fff}.primary:hover{background:#10469b;color:white}.danger{border-color:#efd1cb;color:#ac392e}.shell{max-width:1350px;margin:auto;padding:24px}.top{display:flex;justify-content:space-between;gap:22px;align-items:center;margin-bottom:20px;flex-wrap:wrap}.eyebrow{color:var(--blue);font-size:12px;font-weight:800;letter-spacing:.09em;text-transform:uppercase}.top h1{margin:5px 0 2px;font-size:29px;letter-spacing:-.035em}.top p{margin:0;color:var(--sub);font-size:14px}.pill{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:99px;background:#edf3ff;color:#164ea7;font-size:12px;font-weight:750}.pill.warning{background:var(--amberbg);color:var(--amber)}.top-right{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.tabs{display:flex;gap:10px;flex-wrap:wrap;align-items:center;border-bottom:1px solid var(--line);padding-bottom:13px;margin-bottom:20px}.tab.active{background:var(--blue);color:white;border-color:var(--blue)}.reset{margin-left:auto}.layout{display:grid;grid-template-columns:300px minmax(0,1fr);gap:20px;align-items:start}.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 5px 20px #203b6009}.sidebar{padding:21px;position:sticky;top:16px}.sidebar h2,.content h2,.ta h2{font-size:18px;margin:0 0 9px;letter-spacing:-.015em}.small{color:var(--sub);font-size:13px}.group-title{font-size:11px;text-transform:uppercase;letter-spacing:.09em;color:var(--sub);font-weight:800;margin:24px 0 9px}.scenario{display:flex;align-items:start;gap:10px;width:100%;text-align:left;padding:12px;margin:7px 0;border:1px solid transparent;background:#f7f9fc;border-radius:11px}.scenario:hover{border-color:#c0d5f8}.scenario.active{border-color:#7aa8ed;background:#eaf2ff}.scenario .ico{font-size:19px;line-height:1.4}.scenario strong{display:block;font-size:13px}.scenario em{font-style:normal;color:var(--sub);font-size:12px}.sidebar textarea{resize:vertical;width:100%;min-height:93px;border:1px solid #ced9e7;padding:11px;border-radius:11px;color:var(--ink)}.full{width:100%}.content{padding:25px}.meta{display:flex;gap:9px;align-items:center;flex-wrap:wrap;color:var(--sub);font-size:12px;margin-bottom:20px}.heading{display:flex;gap:13px;align-items:flex-start}.step{flex:none;display:grid;place-items:center;height:29px;width:29px;border-radius:9px;background:#e6effe;color:#1556b9;font-weight:800;font-size:13px}.heading h2{margin:1px 0 2px}.heading p{margin:0;color:var(--sub);font-size:13px}.question{font-size:22px;line-height:1.45;font-weight:720;letter-spacing:-.025em;margin:16px 0 22px}.section{padding:19px 0;border-top:1px solid var(--line)}.section h3{font-size:15px;margin:0 0 10px}.section-title{display:flex;align-items:center;gap:9px}.data-block{padding:17px 18px;background:#f6f9fe;border:1px solid #dfebfd;border-radius:12px;font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere}.data-block.answer{background:#f8fafc;border-color:#e0e5ed;line-height:1.75}.data-block.alert{background:var(--amberbg);border-color:#f1d5a6}.actions{display:flex;gap:9px;flex-wrap:wrap}.notice{padding:13px 16px;background:#edf5ff;border:1px solid #d6e7fe;border-radius:12px;font-size:14px;overflow-wrap:anywhere}.notice.success{background:var(--greenbg);border-color:#c0e8d2;color:#15563c}.notice.warning{background:var(--amberbg);border-color:#f1d5a6;color:#7b4c12}.confirm{margin-top:14px;border:1px solid #ebca9d;background:#fff8ed;border-radius:13px;padding:18px}.confirm h3{margin:0 0 7px}.confirm .preview{font-size:13px;white-space:pre-wrap;background:white;border:1px solid #eadcc8;padding:12px;border-radius:9px;max-height:180px;overflow:auto}.hidden{display:none!important}.fineprint{font-size:12px;color:var(--sub);margin:15px 0 0}.ta{padding:26px}.ta-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}.ticket{border:1px solid var(--line);border-radius:12px;padding:19px;margin-top:14px}.ticket-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:9px}.ticket p{font-size:14px}.ticket details{font-size:13px;color:var(--sub)}.ticket summary{cursor:pointer}.footer{margin:22px 0 4px;text-align:center;font-size:12px;color:var(--sub)}.separator{height:1px;background:var(--line);margin:20px 0}.help-list{padding-left:20px;font-size:13px;color:var(--sub);margin:8px 0}.help-list li{margin:5px 0}.counter{font-variant-numeric:tabular-nums} @media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{position:static}.scenario-list{display:grid;grid-template-columns:1fr 1fr;gap:6px}.scenario{margin:0}.content{padding:19px}}@media(max-width:550px){.shell{padding:12px}.top h1{font-size:25px}.scenario-list{grid-template-columns:1fr}.question{font-size:19px}.reset{margin-left:0}.ta{padding:16px}}
+</style></head>
+<body><div class="shell">
+<header class="top"><div><div class="eyebrow">VinUni · Day 05 · Track T2 Education</div><h1>StudyGuard <span class="pill">AI Product UX & Autonomy</span></h1><p>Trợ lý học bài có kiểm chứng · Prototype tương tác, chạy offline</p></div><div class="top-right"><span class="pill warning">● AI và TA đều mô phỏng</span><span class="pill">Không cần API key</span></div></header>
+<nav class="tabs" aria-label="Chuyển màn hình"><button class="tab active" id="studentTab" type="button" onclick="screen('student')">01 · Học viên</button><button class="tab" id="taTab" type="button" onclick="screen('ta')">02 · Trợ giảng (TA) <span class="counter" id="count">(0)</span></button><button class="reset" type="button" onclick="resetAll()">↻ Đặt lại demo</button></nav>
+<section id="student" class="layout">
+<aside class="card sidebar"><h2>Thư viện tình huống</h2><div class="small">Chọn một trường hợp để xem cách AI phản hồi, giới hạn và quyền của học viên.</div>
+<div class="group-title">Rủi ro ưu tiên · Cần demo</div>
+<div class="scenario-list"><button type="button" class="scenario" data-scenario="r01" onclick="scenario('r01')"><span class="ico">⚠️</span><span><strong>R01 · Lỗi kiến thức nguồn</strong><em>§3.3 có khẳng định sai</em></span></button><button type="button" class="scenario" data-scenario="r02" onclick="scenario('r02')"><span class="ico">🔒</span><span><strong>R02 · Bài tập đang mở</strong><em>Yêu cầu xác nhận đáp án</em></span></button></div>
+<div class="group-title">Tình huống bổ sung</div><div class="scenario-list"><button type="button" class="scenario" data-scenario="r04" onclick="scenario('r04')"><span class="ico">❔</span><span><strong>R04 · Câu hỏi mơ hồ</strong><em>“Cái độ lệch” nghĩa là gì?</em></span></button><button type="button" class="scenario" data-scenario="r09" onclick="scenario('r09')"><span class="ico">✅</span><span><strong>R09 · Bài đã đóng</strong><em>Giải thích lời giải đã công bố</em></span></button><button type="button" class="scenario" data-scenario="r03" onclick="scenario('r03')"><span class="ico">📚</span><span><strong>R03 · Không tìm thấy slide</strong><em>Yêu cầu trích dẫn không tồn tại</em></span></button></div>
+<div class="separator"></div><label for="custom"><strong>Thử câu hỏi riêng</strong></label><p class="small" style="margin:5px 0 9px">Dùng mô phỏng theo từ khóa; không phải AI thật.</p><textarea id="custom" placeholder="VD: Bài 3 đáp án bao nhiêu?" aria-label="Nhập câu hỏi mô phỏng"></textarea><button class="primary full" type="button" style="margin-top:8px" onclick="customAsk()">Thử phản hồi</button><p class="fineprint">Không nhập dữ liệu cá nhân hoặc bài tập thật.</p></aside>
+<main class="card content"><div class="meta"><span>📖 Nhập môn phân tích dữ liệu</span><span>•</span><span>Buổi 3</span><span>•</span><span>TA: 08:00–22:00 (giả lập)</span></div>
+<div class="heading"><span class="step">01</span><div><h2>Tình huống đang xem</h2><p>Chọn rủi ro từ danh sách bên trái</p></div></div><div style="margin:14px 0"><span id="badge" class="pill">Chưa chọn tình huống</span></div><div class="question" id="question">AI hỗ trợ học viên hiểu bài, không làm bài thay.</div>
+<section class="section"><div class="section-title"><span class="step">02</span><h3>Căn cứ và giới hạn nguồn</h3></div><div id="source" class="data-block">Chọn một tình huống để xem dữ liệu nguồn và giới hạn của trợ lý.</div></section>
+<section class="section"><div class="section-title"><span class="step">03</span><h3>Phản hồi hiển thị cho học viên</h3></div><div id="reply" class="data-block answer" role="status">Bạn có thể thử hai rủi ro ưu tiên R01 và R02 hoặc các tình huống bổ sung.</div></section>
+<section class="section"><div class="section-title"><span class="step">04</span><h3>Hành động học viên được chọn</h3></div><div id="actions" class="actions"><span class="small">Chưa có thao tác. Hãy chọn một tình huống.</span></div><div id="confirmation" class="confirm hidden"><h3>⚠ Xác nhận trước khi chuyển TA</h3><p class="small">Kiểm tra chính xác nội dung sắp gửi. Chỉ tạo ticket mô phỏng khi bạn nhấn xác nhận.</p><div class="preview" id="ticketPreview"></div><div class="actions" style="margin-top:12px"><button class="primary" type="button" onclick="confirmTicket()">Xác nhận gửi TA</button><button type="button" onclick="cancelTicket()">Hủy, không gửi</button></div></div></section>
+<section class="section"><div class="section-title"><span class="step">05</span><h3>Trạng thái hành động</h3></div><div id="feedback" class="notice" role="status" aria-live="polite">Chưa có hành động nào được thực hiện.</div></section>
+<div class="fineprint"><strong>Nguyên tắc:</strong> G1/G2 – nêu khả năng và giới hạn; G8/G9 – sửa hoặc bỏ thao tác; G10 – thu hẹp khi chưa chắc; G11 – nêu căn cứ; G15 – báo lỗi. PAIR: giải thích, minh bạch, có đường lui. <strong>`dang_FAQ` bị cấm</strong>, không được gọi trong demo.</div></main></section>
+<section id="ta" class="hidden card ta"><div class="ta-head"><div><div class="eyebrow">Màn hình 02</div><h2>Hàng chờ trợ giảng (TA)</h2><p class="small">Chỉ hiển thị các yêu cầu học viên đã xác nhận trong màn hình 01.</p></div><span class="pill" id="queueCount">0 yêu cầu</span></div><div class="notice warning"><strong>Lưu ý:</strong> Đây chỉ là hàng chờ mô phỏng trong trình duyệt. Không gửi thông báo tới TA thật và không cam kết thời gian phản hồi. Giờ hỗ trợ giả lập: 08:00–22:00.</div><div id="tickets"><p class="small">Chưa có yêu cầu nào được gửi.</p></div></section>
+<footer class="footer">StudyGuard · VinUni Day 05 · T2 Education · Mô phỏng UX & Autonomy, không kết nối dữ liệu thật</footer>
+</div>
+<script>
+'use strict';
+/* ===== 1. DỮ LIỆU TÌNH HUỐNG (GIỮ NGUYÊN TỪ FILE GỐC) ===== */
+const data={r01:{badge:'Cần kiểm chứng · lỗi nguồn',question:'“Trong §3.3 ghi độ lệch chuẩn luôn nhỏ hơn phương sai, vậy cứ học vậy ạ?”',source:'Buổi 3 · §3.3 (Data A): “Vì là căn bậc hai, độ lệch chuẩn luôn nhỏ hơn phương sai.” Câu này có trong tài liệu nhưng sai nếu coi là quy tắc luôn đúng. Hai đại lượng có đơn vị khác nhau.',reply:'Mình tìm thấy câu “độ lệch chuẩn luôn nhỏ hơn phương sai” ở §3.3. Tuy nhiên, khẳng định “luôn nhỏ hơn” không đúng trong mọi trường hợp. Mình không khuyên bạn học thuộc câu này. Bạn có thể gửi chính đoạn này cho TA/giảng viên kiểm tra. Giờ TA là 08:00–22:00, mình không thể hứa giờ trả lời.',kind:'risk'},r02:{badge:'Bài đang mở · giới hạn gợi ý',question:'“Bài 3 em tính ra trung bình 15,25, đúng không? Cho em luôn câu b nhé”',source:'Data A §3.5: Bài tập 3, 8 mức lương (dữ liệu dựng). Data B: bài tập 3 đang mở, hạn 13/11/2026 23:59. Quy tắc: không xác nhận đáp số/giải hộ.',reply:'Bài tập 3 đang mở đến 13/11/2026 23:59. Mình không thể xác nhận kết quả hoặc làm câu (b) thay bạn. Mình có thể gợi ý bước đầu, không đưa đáp án.',kind:'homework'},r04:{badge:'Cần làm rõ',question:'“Cái độ lệch ấy là sao ạ?”',source:'Buổi 3 §3.3: phương sai và độ lệch chuẩn; tin người dùng chưa nói rõ khái niệm nào.',reply:'Bạn đang hỏi về “độ lệch chuẩn” trong §3.3 hay độ lệch của một giá trị so với trung bình? Chọn một ý để mình giải thích đúng phần nhé.',kind:'clarify'},r09:{badge:'Đã có đáp án · an toàn giải thích',question:'“Đáp án bài 2 hôm nọ vì sao bằng 6?”',source:'Trang khoá học (Data B): bài tập 2 đã hết hạn 06/11/2026 23:59; đáp án công bố 07/11/2026 là 6.',reply:'Bài 2 đã hết hạn và đáp án đã công bố. Ta cộng năm số 4 + 8 + 6 + 5 + 7 = 30, sau đó chia 5 được 6. Đây là ví dụ trung bình cộng, theo quy tắc ở Buổi 3 §3.1.',kind:'simple'},r03:{badge:'Không có nguồn',question:'“Slide 12 nói gì về trung vị?”',source:'Data A chỉ đánh số §3.1–§3.5, KHÔNG có slide số 12. Có nội dung trung vị tại §3.2.',reply:'Tài liệu buổi 3 không có slide đánh số nên mình không thể trích “slide 12”. Phần trung vị có thật ở §3.2: sắp xếp dữ liệu tăng dần rồi tìm giá trị ở giữa.',kind:'missing'}};
+
+/* ===== 2. TRẠNG THÁI DEMO ===== */
+let current = null;
+let pending = null;
+let tickets = [];
+let nextTicket = 1;
+const el = id => document.getElementById(id);
+const text = (id,value) => { el(id).textContent = value; };
+
+/* ===== 3. ĐIỀU HƯỚNG ===== */
+function screen(name) {
+  const student = name === 'student';
+  el('student').classList.toggle('hidden', !student);
+  el('ta').classList.toggle('hidden', student);
+  el('studentTab').classList.toggle('active', student);
+  el('taTab').classList.toggle('active', !student);
+  renderTickets();
+}
+function status(message, type='normal') {
+  const node = el('feedback');
+  node.textContent = message;
+  node.className = 'notice' + (type === 'success' ? ' success' : type === 'warning' ? ' warning' : '');
+}
+function addButton(label, callback, cls='') {
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.textContent = label;
+  button.className = cls;
+  button.addEventListener('click', callback);
+  el('actions').append(button);
+}
+function setButtons() { el('actions').replaceChildren(); }
+function markSelected(id) {
+  document.querySelectorAll('[data-scenario]').forEach(node => node.classList.toggle('active',node.dataset.scenario===id));
+}
+
+/* ===== 4. KỊCH BẢN HỌC VIÊN ===== */
+function scenario(id) {
+  const d=data[id];
+  if(!d) return;
+  current=id; pending=null;
+  el('confirmation').classList.add('hidden');
+  markSelected(id);
+  text('badge',d.badge); el('badge').className='pill'+(['r01','r02'].includes(id)?' warning':'');
+  text('question',d.question);text('source',d.source);text('reply',d.reply);
+  setButtons();
+  if(id==='r01') {
+    addButton('Gửi TA xác minh',previewTicket,'primary');
+    addButton('Báo tài liệu sai',()=>status('Đã ghi nhận phản hồi trong bản mô phỏng; chưa chuyển cho TA.','success'));
+  }
+  if(id==='r02') {
+    addButton('Xem trước gợi ý bước đầu',hintPreview,'primary');
+    addButton('Hỏi TA',previewTicket);
+  }
+  if(id==='r04') {
+    addButton('Mình hỏi về độ lệch chuẩn',()=>{
+      text('reply','Trong §3.3, độ lệch chuẩn cho thấy dữ liệu phân tán quanh trung bình như thế nào. Nó bằng căn bậc hai của phương sai và có cùng đơn vị với dữ liệu. Lưu ý: câu “luôn nhỏ hơn phương sai” trong tài liệu cần kiểm chứng.');
+      status('Học viên đã làm rõ yêu cầu; chưa gọi tool ghi dữ liệu.','success');
+    },'primary');
+  }
+  if(id==='r03') addButton('Nhờ TA chỉ tài liệu đúng',previewTicket,'primary');
+  addButton('Bỏ qua / hủy thao tác',()=>{
+    pending=null;el('confirmation').classList.add('hidden');
+    status('Đã hủy thao tác đang chờ. Không có yêu cầu mới được gửi.');
+  });
+  addButton('Chỉnh câu hỏi',()=>{
+    el('custom').value=d.question.replace(/[“”]/g,'');
+    el('custom').focus();
+    status('Câu hỏi đã được đưa vào ô bên trái để bạn sửa.');
+  });
+  status('Đã xem dữ liệu dựng (chỉ đọc). Chưa gửi nội dung hoặc tạo yêu cầu.');
+}
+function hintPreview() {
+  if(current!=='r02') return;
+  text('reply','Bản xem trước gợi ý (chưa chấp nhận): Bước 1 – Hãy đếm số giá trị trong danh sách §3.5. Tiếp theo, nhắc lại công thức trung bình ở §3.1 và quy tắc trung vị ở §3.2. Mình không xác nhận đáp số khi bài vẫn mở.');
+  setButtons();
+  addButton('Chấp nhận gợi ý',()=>status('Đã chấp nhận nhận gợi ý bước đầu. Không tiết lộ hoặc kiểm tra đáp án.','success'),'primary');
+  addButton('Bỏ gợi ý',()=>{scenario('r02');status('Đã bỏ bản xem trước gợi ý.');});
+  addButton('Chuyển cho TA',previewTicket);
+  status('Đây chỉ là bản xem trước; học viên được chọn chấp nhận hoặc bỏ.','warning');
+}
+
+
+renderTickets();
+</script></body></html>
