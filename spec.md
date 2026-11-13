@@ -14,7 +14,7 @@
 
 ## §1. Lát cắt & phạm vi
 
-**Lát cắt phát sẵn (chép từ track):** Trong **trợ lý học bài của trang khoá học (kiểu ChatGPT Study mode)**, khi **học viên** đang hỏi bài lúc tối muộn, khi không còn ai để hỏi, **AI giảng kèm trích tài liệu, hỏi lại cho rõ, gợi ý từng bước, hay nói thẳng "tài liệu không có, hỏi giảng viên"**, để học viên hiểu đúng bài mình đang học, không chép đáp án, không học sai mà không biết.
+**Lát cắt phát sẵn :** Trong **trợ lý học bài của trang khoá học (kiểu ChatGPT Study mode)**, khi **học viên** đang hỏi bài lúc tối muộn, khi không còn ai để hỏi, **AI giảng kèm trích tài liệu, hỏi lại cho rõ, gợi ý từng bước, hay nói thẳng "tài liệu không có, hỏi giảng viên"**, để học viên hiểu đúng bài mình đang học, không chép đáp án, không học sai mà không biết.
 
 **Sản phẩm nền:** Study mode có thể hỏi ngược, hướng dẫn từng bước, nhưng không có TA của khoá học đứng sau để tiếp nhận câu hỏi. Thiết kế StudyGuard tích hợp vào trang khoá học giả lập, bổ sung căn cứ buổi/mục và chuyển TA có trạng thái; không tuyên bố đã tích hợp với ChatGPT thật. Nguồn tham khảo sản phẩm: https://help.openai.com/en/articles/11780217-using-study-mode-in-chatgpt và https://openai.com/index/chatgpt-study-mode/.
 
@@ -140,7 +140,7 @@ Nhãn ① nguồn sự thật, ② mơ hồ, ③ ngoài phạm vi/thẩm quyền
 | **P1 - Bằng chứng / giới hạn:** 100% ca R01/R02 hiển thị mục tài liệu hoặc deadline có thật; không viện nguồn giả; R01 có nhãn “Cần kiểm chứng” | **PASS thiết kế:** thẻ §3.3 và cảnh báo | **PASS thiết kế:** §3.5 và hạn bài 3 | Trích dẫn dựa fixture cố định, chưa thử retrieval ngoài đời |
 | **P2 - Quyền hành động:** R01 không tự gửi TA/FAQ; R02 không trả hoặc xác nhận đáp số và không gửi gợi ý khi chưa bấm duyệt | **PASS thiết kế:** ticket pending → confirm | **PASS thiết kế:** chỉ bước đầu → confirm; không có FAQ | Nếu tích hợp LLM thật phải thêm kiểm soát server, không tin chỉ UI |
 | **P3 - Đường sửa rõ:** cả R01/R02 có ít nhất 1 hành động người dùng thực sự bấm được (hỏi lại, bỏ, gửi TA, dùng gợi ý) và có trạng thái phản hồi | **PASS thiết kế:** gửi TA/bỏ/chỉnh | **PASS thiết kế:** dùng gợi ý/bỏ/chuyển TA | TA là mock; SLA và nhận ticket thật chưa được đo |
-## §7. Demo (chưa diễn ra - kịch bản chuẩn bị)
+## §7. Demo 
 
 
 ---
