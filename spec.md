@@ -1,4 +1,4 @@
-# Bài nộp LAB5 - T2 Education · Nhóm StudyGuard (bản đề xuất, chờ nhóm xác nhận)
+# Bài nộp LAB5 - T2 Education · Nhóm StudyGuard
 
 **Lớp:** L3B *(cần xác nhận)* · **Bàn/zone:** [BỔ SUNG] · **Track:** T2 Education  
 **Trạng thái:** Bản chuẩn bị của một thành viên; chưa coi là quyết định chung, chưa demo với TA.  
@@ -48,7 +48,7 @@ Nhãn ① nguồn sự thật, ② mơ hồ, ③ ngoài phạm vi/thẩm quyền
 
 ## §3. Khi AI sai: UX cho hai ca đắt nhất
 
-### R01 - Tài liệu §3.3 có câu đáng nghi (hệ thống/nguồn; không đổ lỗi cho học viên)
+### R01 - Tài liệu §3.3 có câu đáng nghi
 
 **AI nói nguyên văn:** “Mình tìm thấy câu ‘Vì là căn bậc hai, độ lệch chuẩn luôn nhỏ hơn phương sai’ trong tài liệu buổi 3, §3.3. Tuy nhiên câu ‘luôn nhỏ hơn’ **không đúng trong mọi trường hợp**. Hai đại lượng còn có đơn vị khác nhau nên không thể kết luận như vậy. Mình sẽ không khuyên bạn học thuộc khẳng định này. Bạn có thể gửi nguyên câu và câu hỏi cho TA/giảng viên kiểm tra. Giờ hỗ trợ của TA là 08:00-22:00; hiện đang ngoài giờ hỗ trợ nên chưa thể hứa giờ trả lời cụ thể.”
 
@@ -58,7 +58,7 @@ Nhãn ① nguồn sự thật, ② mơ hồ, ③ ngoài phạm vi/thẩm quyền
 
 **Quyết định:** chọn **dừng xác nhận + chuyển người có sự đồng ý**, thay vì (a) hỏi lại, vì ý học viên đã rõ, hoặc (b) trích câu sai và nói kèm “có thể”, vì vẫn khiến người học học theo thông tin sai. **Loại lỗi:** lỗi hệ thống/nguồn; giải pháp là gắn cờ nguồn, không chỉ sửa từ ngữ. **G2** thể hiện giới hạn; **G11** chỉ đúng nguồn; **G10** thu hẹp khi nghi ngờ; PAIR *Explainability + Trust* qua thẻ nguồn; PAIR *Graceful Failure* qua chuyển TA.
 
-### R02 - Yêu cầu xác nhận đáp số bài 3 đang mở (ngữ cảnh/sai quyền; không quy kết đạo đức học viên)
+### R02 - Yêu cầu xác nhận đáp số bài 3 đang mở
 
 **AI nói nguyên văn:** “Bài tập 3 vẫn đang mở đến **13/11/2026 23:59** (trang khoá học). Vì vậy mình không thể xác nhận con số bạn đưa ra hoặc làm câu (b) thay bạn. Mình có thể giúp bước đầu: hãy đếm số mức lương trong §3.5, sau đó nghĩ xem **trung bình** và **trung vị** được tính theo quy tắc nào trong §3.1-§3.2. Bạn muốn bắt đầu bằng cách đếm các giá trị không?”
 
@@ -134,10 +134,12 @@ Nhãn ① nguồn sự thật, ② mơ hồ, ③ ngoài phạm vi/thẩm quyền
 - *Đã cân nhắc nút "Đăng FAQ" bị làm mờ*: **Đã loại bỏ** vì nút mờ vẫn ngầm hiểu là tính năng tồn tại nhưng tạm khóa, có thể gây hiểu lầm hoặc bị bypass bằng DevTools. Quyết định **loại bỏ hoàn toàn khỏi UI**.
 - *Đã cân nhắc cơ chế tự động gửi ticket khi học viên bấm*: **Đã loại bỏ** vì học viên có thể bấm nhầm hoặc đổi ý. Bắt buộc có **bước xác nhận** hiển thị tóm tắt nội dung gửi để học viên nắm quyền quyết định cuối cùng.
 
-## §6. Tốt là gì: 3 Pass/Fail (đề xuất tự kiểm, không phải kết quả test với người thật)
-
-
-
+## §6. Tốt là gì: 3 Pass/Fail
+| Tiêu chí chấm được | R01 | R02 | Lỗi còn lại |
+|---|---|---|---|
+| **P1 - Bằng chứng / giới hạn:** 100% ca R01/R02 hiển thị mục tài liệu hoặc deadline có thật; không viện nguồn giả; R01 có nhãn “Cần kiểm chứng” | **PASS thiết kế:** thẻ §3.3 và cảnh báo | **PASS thiết kế:** §3.5 và hạn bài 3 | Trích dẫn dựa fixture cố định, chưa thử retrieval ngoài đời |
+| **P2 - Quyền hành động:** R01 không tự gửi TA/FAQ; R02 không trả hoặc xác nhận đáp số và không gửi gợi ý khi chưa bấm duyệt | **PASS thiết kế:** ticket pending → confirm | **PASS thiết kế:** chỉ bước đầu → confirm; không có FAQ | Nếu tích hợp LLM thật phải thêm kiểm soát server, không tin chỉ UI |
+| **P3 - Đường sửa rõ:** cả R01/R02 có ít nhất 1 hành động người dùng thực sự bấm được (hỏi lại, bỏ, gửi TA, dùng gợi ý) và có trạng thái phản hồi | **PASS thiết kế:** gửi TA/bỏ/chỉnh | **PASS thiết kế:** dùng gợi ý/bỏ/chuyển TA | TA là mock; SLA và nhận ticket thật chưa được đo |
 ## §7. Demo (chưa diễn ra - kịch bản chuẩn bị)
 
 
