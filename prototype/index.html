@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>StudyGuard - T2 Education · Day 05</title>
+    <style>
+        :root {
+            font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+            color: #1d2939;
+            background: #f4f7fb
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0
+        }
+
+        .shell {
+            max-width: 1160px;
+            margin: auto;
+            padding: 24px 18px
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            align-items: center;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 16px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 26px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2 {
+            font-size: 18px;
+            margin: 0 0 12px
+        }
+
+        p {
+            line-height: 1.55
+        }
+
+        .muted {
+            color: #667085
+        }
+
+        .tiny {
+            font-size: 12px
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin: 18px 0;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .clock-sim {
+            margin-left: auto;
+            background: #0f172a;
+            color: #38bdf8;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .clock-pulse {
+            width: 8px;
+            height: 8px;
+            background: #f43f5e;
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.9); opacity: 0.8; }
+            50% { transform: scale(1.3); opacity: 1; }
+            100% { transform: scale(0.9); opacity: 0.8; }
+        }
+
+        .btn,
+        button {
+            font: inherit;
+            cursor: pointer;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            background: white;
+            color: #26334a;
+            padding: 9px 14px;
+            transition: all 0.15s ease;
+        }
+
+        button:hover {
+            background: #eff6ff
+        }
+
+        button:focus-visible {
+            outline: 3px solid #86b7ff
+        }
+
+        .primary {
+            background: #175cd3;
+            color: white;
+            border-color: #175cd3
+        }
+
+        .primary:hover {
+            background: #1849a9
+        }
+
+        .success {
+            background: #027a48;
+            color: white;
+            border-color: #027a48
+        }
+
+        .success:hover {
+            background: #05603a
+        }
+
+        .danger {
+            color: #b42318;
+            border-color: #fecdca
+        }
+
+        .selected {
+            background: #e8f1ff;
+            border-color: #84adfb;
+            font-weight: 700;
+            color: #175cd3;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 280px minmax(0, 1fr);
+            gap: 16px
+        }
+
+        .panel {
+            background: white;
+            border: 1px solid #e3e9f2;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 16px #1725540d
+        }
+
+        .side button {
+            display: block;
+            text-align: left;
+            width: 100%;
+            margin: 7px 0;
+            font-size: 13.5px;
+        }
+
+        .badge {
+            display: inline-block;
+            border-radius: 20px;
+            background: #eaf3ff;
+            color: #175cd3;
+            padding: 4px 10px;
+            font-size: 12px;
+            font-weight: 700
+        }
+
+        .warn {
+            background: #fff2dc;
+            color: #b54708;
+            border: 1px solid #fedf89;
+        }
+
+        .alert-red {
+            background: #fef3f2;
+            color: #b42318;
+            border: 1px solid #fecdca;
+        }
+
+        .badge-green {
+            background: #ecfdf3;
+            color: #027a48;
+            border: 1px solid #a6f4c5;
+        }
+
+        .block {
+            background: #f8faff;
+            padding: 14px;
+            border-radius: 12px;
+            margin: 14px 0;
+            border: 1px solid #e2e8f0
+        }
+
+        .evidence {
+            border-left: 4px solid #175cd3
+        }
+
+        .alert {
+            border-left: 4px solid #f79009
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 14px 0
+        }
+
+        .status {
+            background: #eef5ff;
+            padding: 12px;
+            border-radius: 10px;
+            margin-top: 12px;
+            font-size: 13.5px;
+            line-height: 1.5;
+        }
+
+        .hidden {
+            display: none !important
+        }
+
+        .footer {
+            border-top: 1px solid #e5e7eb;
+            margin-top: 20px;
+            padding-top: 14px
+        }
+
+        .notice {
+            color: #944b00;
+            background: #fff8e7;
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-size: 13.5px;
+            border: 1px solid #fedf89;
+        }
+
+        .message {
+            font-size: 15px;
+            white-space: pre-line;
+            line-height: 1.65;
+            margin-top: 8px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 75px;
+            border: 1px solid #cbd5e1;
+            border-radius: 9px;
+            padding: 10px;
+            font: inherit;
+            resize: vertical;
+        }
+
+        input {
+            width: 100%;
+            border: 1px solid #cbd5e1;
+            border-radius: 9px;
+            padding: 10px;
+            font: inherit
+        }
+
+        .ticket {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 14px;
+            background: #ffffff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+            transition: all 0.2s ease;
+        }
+
+        .ticket.processing {
+            border-left: 5px solid #175cd3;
+            background: #f8fbff;
+        }
+
+        .ticket.resolved {
+            border-left: 5px solid #027a48;
+            background: #f6fef9;
+        }
+
+        .ticket-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .ticket-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px dashed #e2e8f0;
+            flex-wrap: wrap;
+        }
+
+        .reply-box {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f1f5f9;
+            border-radius: 8px;
+        }
+
+        .num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #194d92;
+            color: white;
+            border-radius: 6px;
+            min-width: 22px;
+            height: 22px;
+            padding: 0 4px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-right: 6px
+        }
+
+        .desc {
+            font-size: 13.5px;
+            line-height: 1.6
+        }
+
+        .space {
+            margin-top: 14px
+        }
+
+        .chip-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 8px 0;
+        }
+
+        .chip {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11.5px;
+            color: #475467;
+            cursor: pointer;
+        }
+
+        .chip:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+
+        @media(max-width:820px) {
+            .grid {
+                grid-template-columns: 1fr
+            }
+
+            .shell {
+                padding: 12px
+            }
+
+            h1 {
+                font-size: 22px
+            }
+
+            .clock-sim {
+                margin-left: 0;
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shell">
+        <header>
+            <div>
+                <h1>StudyGuard <span class="badge">T2 · Education</span></h1>
+                <div class="muted">Trợ lý học bài có kiểm chứng · Giới hạn quyền theo Cost-of-Error · VinUni Day 05</div>
+            </div>
+            <div class="clock-sim">
+                <span class="clock-pulse"></span>
+                <span>GIẢ LẬP: 22:30 (ĐÊM) · NGOÀI CA TRỰC TA (08:00–22:00)</span>
+            </div>
+        </header>
+
+        <div class="tabs">
+            <button id="studentTab" class="selected" onclick="screen('student')">Màn hình 1 · Học viên</button>
+            <button id="taTab" onclick="screen('ta')">Màn hình 2 · Portal TA <span id="count" class="badge">0</span></button>
+            <button onclick="resetAll()">Đặt lại toàn bộ demo</button>
+        </div>
+
+        <!-- MÀN HÌNH 1: HỌC VIÊN -->
+        <section id="student">
+            <div class="grid">
+                <aside class="panel side">
+                    <h2>Kịch bản dựng sẵn</h2>
+                    <button onclick="scenario('r01')">⚠ R01 · §3.3 có khẳng định sai</button>
+                    <button onclick="scenario('r02')">🔒 R02 · Xin đáp án bài 3 đang mở</button>
+                    <button onclick="scenario('r04')">❓ R04 · Hỏi mơ hồ "cái độ lệch"</button>
+                    <button onclick="scenario('r09')">✅ R09 · Bài 2 đã hết hạn (đóng)</button>
+                    <button onclick="scenario('r03')">📚 R03 · Slide 12 không tồn tại</button>
+                    
+                    <hr style="border:none;border-top:1px solid #e2e8f0;margin:12px 0">
+                    
+                    <label for="custom"><strong>Thử ca lạ bất kỳ (Edge-Case)</strong></label>
+                    <div class="chip-group">
+                        <span class="chip" onclick="fillCustom('Em dốt quá, nản quá chắc bỏ học thôi')">Nản chí / Tự ti</span>
+                        <span class="chip" onclick="fillCustom('Cho em xin gia hạn deadline bài 3 đến mai được không?')">Xin nộp trễ</span>
+                        <span class="chip" onclick="fillCustom('Tính độ lệch chuẩn bằng Excel thì dùng hàm STDEV.S hay STDEV.P?')">Hỏi Excel</span>
+                        <span class="chip" onclick="fillCustom('Buổi 7 học p-value là gì vậy ạ?')">Hỏi buổi 7</span>
+                        <span class="chip" onclick="fillCustom('Giờ này tối muộn rồi TA có trả lời em ngay không?')">Hỏi giờ TA</span>
+                        <span class="chip" onclick="fillCustom('Đăng câu trả lời này lên FAQ cho cả lớp xem với')">Đòi đăng FAQ</span>
+                    </div>
+
+                    <textarea id="custom" placeholder="Nhập câu hỏi ca lạ của TA/Giảng viên tại đây..." aria-label="Câu hỏi thử nghiệm"></textarea>
+                    <button class="primary" style="width:100%;margin-top:6px" onclick="customAsk()">Kiểm tra phản ứng AI</button>
+                    <p class="tiny muted" style="margin-top:6px">Bộ phân loại ngữ cảnh & quyền hạn tự động theo fixture Data A/B.</p>
+                </aside>
+
+                <main class="panel">
+                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px" class="muted tiny">
+                        <span>Khoá: <strong>Nhập môn phân tích dữ liệu</strong> · Đang mở Buổi 1, 2, 3</span>
+                        <span class="badge warn">Khung giờ TA: 08:00–22:00 (Hiện: 22:30 ngoài giờ)</span>
+                    </div>
+
+                    <div class="space">
+                        <span class="num" title="HAX G1/G2: Trạng thái & Mức độ tự chủ">1</span>
+                        <span id="badge" class="badge">Chọn một tình huống để kiểm tra</span>
+                    </div>
+
+                    <h2 id="question" class="space" style="color:#0f172a">Học cùng trợ lý: Hiểu đúng bài, không chép đáp số</h2>
+
+                    <div class="block evidence">
+                        <span class="num" title="HAX G11: Minh bạch căn cứ sự thật">2</span>
+                        <strong>Căn cứ & Nguồn trích dẫn (Truth Source)</strong>
+                        <div id="source" class="desc space">Chỉ dùng tài liệu buổi 3 và trang khoá học dựng. Tài liệu không có slide số.</div>
+                    </div>
+
+                    <div class="block" id="replyWrap">
+                        <span class="num" title="HAX G1/G10: Giới hạn câu trả lời & Thu hẹp phạm vi">3</span>
+                        <strong>Phản hồi của Trợ lý AI</strong>
+                        <p id="reply" class="message">Hãy chọn 1 kịch bản bên trái hoặc nhập câu ca lạ bất kỳ để xem cách hệ thống xử lý khi gặp rủi ro hoặc ngoài thẩm quyền.</p>
+                    </div>
+
+                    <div class="actions" id="actions">
+                        <span class="num" title="HAX G8/G9 & PAIR: Các hành động duyệt / sửa / lui an toàn">4</span>
+                    </div>
+
+                    <div id="feedback" class="status" role="status">
+                        <span class="num" title="Phản hồi hệ thống & Trạng thái hành động">5</span>
+                        <strong>Trạng thái:</strong> Chưa thực hiện thao tác.
+                    </div>
+
+                    <div id="confirmation" class="block alert hidden">
+                        <h2 style="color:#b54708;margin:0 0 8px">Xác nhận chuyển cho TA (Quyền duyệt: Học viên)</h2>
+                        <p id="ticketPreview" style="font-size:14px;background:white;padding:10px;border-radius:8px;border:1px solid #fedf89"></p>
+                        <p class="muted tiny">Lưu ý: Hiện tại là <strong>22:30 (ngoài ca trực 08:00–22:00)</strong>. Yêu cầu của bạn sẽ được chuyển vào hàng chờ và TA sẽ xử lý vào ca trực sáng mai từ 08:00. Bạn có chắc muốn gửi?</p>
+                        <div class="actions">
+                            <button class="primary" onclick="confirmTicket()">Xác nhận gửi ticket</button>
+                            <button onclick="cancelTicket()">Không gửi nữa (Hủy)</button>
+                        </div>
+                    </div>
+
+                    <div class="footer tiny muted">
+                        <strong>Ánh xạ nguyên tắc HAX/PAIR trên màn hình:</strong><br>
+                        • <strong>[1] G1/G2:</strong> Làm rõ phạm vi và độ chắc chắn (không bịa % giả)<br>
+                        • <strong>[2] G11:</strong> Luôn trỏ đúng mã mục (§3.1-§3.5) hoặc deadline từ Data A/B<br>
+                        • <strong>[3] G10:</strong> Thu hẹp phạm vi khi nghi ngờ, từ chối giải hộ bài đang mở<br>
+                        • <strong>[4] G8/G9:</strong> Cho phép bỏ qua, sửa câu hỏi, duyệt trước khi gửi<br>
+                        • <strong>[5] PAIR Graceful Failure:</strong> Không để học viên kẹt, luôn có lối thoát an toàn.<br>
+                        • <strong>Cấm tuyệt đối:</strong> Công cụ `dang_FAQ` không bao giờ xuất hiện nút trên giao diện.
+                    </div>
+                </main>
+            </div>
+        </section>
+
+        <!-- MÀN HÌNH 2: PORTAL TA -->
+        <section id="ta" class="hidden">
+            <div class="panel">
+                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px">
+                    <h2>
+                        <span class="num">6</span>Hàng chờ tiếp nhận của TA
+                        <span id="queueCount" class="badge">0 yêu cầu</span>
+                    </h2>
+                    <div class="actions" style="margin:0">
+                        <button onclick="filterTickets('all')" id="btnFilterAll" class="selected">Tất cả</button>
+                        <button onclick="filterTickets('pending')" id="btnFilterPending">Chờ xử lý</button>
+                        <button onclick="filterTickets('processing')" id="btnFilterProc">Đang xử lý</button>
+                    </div>
+                </div>
+
+                <div class="notice">
+                    <span class="num">8</span>
+                    <strong>Thông báo ca trực TA:</strong> Khung giờ hỗ trợ chính thức: <strong>08:00 – 22:00</strong>.<br>
+                    Hiện tại hệ thống giả lập mốc <strong>22:30 (Đêm)</strong>. Mọi ticket học viên xác nhận gửi lúc này được lưu an toàn trong hàng chờ đêm. TA khi vào ca trực sáng mai sẽ nhận xét và giải đáp theo thứ tự ưu tiên.
+                </div>
+
+                <div id="tickets" style="margin-top:16px">
+                    <p class="muted">Chưa có yêu cầu nào được học viên xác nhận gửi.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const data = {
+            r01: {
+                badge: 'Cần kiểm chứng · Lỗi nguồn tài liệu §3.3',
+                question: '“Trong §3.3 ghi độ lệch chuẩn luôn nhỏ hơn phương sai, vậy cứ học vậy ạ?”',
+                source: 'Buổi 3 · §3.3 (Data A): “Vì là căn bậc hai, độ lệch chuẩn luôn nhỏ hơn phương sai.” -> Mệnh đề sai khi phương sai < 1 (ví dụ var = 0.25 => std = 0.5 > 0.25). Hai đại lượng còn khác đơn vị đo.',
+                reply: 'Mình tìm thấy câu trích dẫn trên trong tài liệu Buổi 3 (§3.3). Tuy nhiên khẳng định “luôn nhỏ hơn” KHÔNG đúng trong mọi trường hợp (đặc biệt khi phương sai nhỏ hơn 1). Ngoài ra, phương sai và độ lệch chuẩn khác đơn vị đo nên việc so sánh lớn hơn/nhỏ hơn không mang ý nghĩa toán học tổng quát.\n\nMình khuyên bạn KHÔNG nên học thuộc khẳng định này. Bạn có thể bấm gửi câu hỏi này để TA/Giảng viên kiểm tra và đính chính tài liệu.',
+                kind: 'risk',
+                priority: 'Ưu tiên cao · Nghi vấn lỗi tài liệu'
+            },
+            r02: {
+                badge: 'Bài 3 đang mở · Giới hạn quyền (Không cho đáp án)',
+                question: '“Bài 3 em tính ra trung bình 15,25, đúng không? Cho em luôn câu b nhé”',
+                source: 'Data B: Bài tập 3 đang mở (hạn đến 13/11/2026 23:59). Quy tắc liêm chính học thuật: CẤM đưa đáp số, CẤM xác nhận đúng/sai, CẤM làm hộ câu b.',
+                reply: 'Bài tập 3 vẫn đang mở hạn nộp đến 23:59 ngày 13/11/2026. Để đảm bảo bạn tự nắm vững kiến thức, mình không thể xác nhận con số 15,25 là đúng hay sai và không thể viết nhận xét câu (b) thay bạn.\n\nMình có thể gợi ý bước 1 để bạn tự kiểm tra: đếm số nhân viên trong §3.5 và xem lại cách tính trung bình cộng tại §3.1.',
+                kind: 'homework',
+                priority: 'Thắc mắc bài tập đang mở'
+            },
+            r04: {
+                badge: 'Mơ hồ / Thiếu thông tin (HAX G10)',
+                question: '“Cái độ lệch ấy là sao ạ?”',
+                source: 'Buổi 3 · §3.3: Tài liệu có khái niệm "Phương sai và độ lệch chuẩn" và độ phân tán quanh trung bình. Câu hỏi chưa rõ ý.',
+                reply: 'Bạn đang hỏi về “độ lệch chuẩn” (căn bậc hai của phương sai đo độ phân tán quanh trung bình ở §3.3) hay độ lệch (khoảng cách) của một giá trị bất kỳ so với giá trị trung bình? Bạn chọn một ý bên dưới để mình giải thích chính xác nhé!',
+                kind: 'clarify',
+                priority: 'Cần làm rõ thuật ngữ'
+            },
+            r09: {
+                badge: 'Bài tập đã đóng · Được phép giải thích đầy đủ',
+                question: '“Đáp án bài 2 hôm nọ vì sao bằng 6?”',
+                source: 'Data B: Bài tập 2 đã hết hạn (06/11/2026 23:59) và đáp án chính thức đã công bố vào ngày 07/11 là 6.',
+                reply: 'Bài tập 2 đã hết hạn và đáp án chính thức đã được công bố. Ta có 5 giá trị: 4, 8, 6, 5, 7.\n• Tổng các giá trị: 4 + 8 + 6 + 5 + 7 = 30\n• Số lượng giá trị: 5\n• Trung bình cộng: 30 / 5 = 6 (áp dụng đúng công thức §3.1).',
+                kind: 'simple',
+                priority: 'Giải thích bài tập đã đóng'
+            },
+            r03: {
+                badge: 'Không có nguồn sự thật (Truth Source Violation)',
+                question: '“Slide 12 nói gì về trung vị?”',
+                source: 'Data A Buổi 3: Tài liệu phân theo mục §3.1 đến §3.5, HOÀN TOÀN KHÔNG CÓ SLIDE ĐÁNH SỐ. Khái niệm trung vị nằm ở §3.2.',
+                reply: 'Tài liệu Buổi 3 của khoá học không có slide đánh số (không có “slide 12”) nên mình không thể trích dẫn theo số slide được. Khái niệm Trung vị nằm tại mục §3.2: là giá trị đứng giữa khi sắp xếp dữ liệu tăng dần, ít bị ảnh hưởng bởi giá trị ngoại lai.',
+                kind: 'missing',
+                priority: 'Yêu cầu sai lệch nguồn'
+            }
+        };
+
+        let current = null, pending = null, tickets = [], hintUsed = false, currentFilter = 'all';
+        const el = id => document.getElementById(id);
+
+        function screen(s) {
+            el('student').classList.toggle('hidden', s !== 'student');
+            el('ta').classList.toggle('hidden', s !== 'ta');
+            el('studentTab').classList.toggle('selected', s === 'student');
+            el('taTab').classList.toggle('selected', s === 'ta');
+            renderTickets();
+        }
+
+        function status(t) {
+            el('feedback').innerHTML = '<span class="num">5</span><strong>Trạng thái:</strong> ' + t;
+        }
+
+        function addButton(label, func, cls = '') {
+            let b = document.createElement('button');
+            b.textContent = label;
+            b.className = cls;
+            b.onclick = func;
+            el('actions').append(b);
+        }
+
+        function fillCustom(txt) {
+            el('custom').value = txt;
+            customAsk();
+        }
+
+        function scenario(id) {
+            current = id;
+            pending = null;
+            hintUsed = false;
+            el('confirmation').classList.add('hidden');
+            const d = data[id];
+            el('badge').textContent = d.badge;
+            el('badge').className = 'badge ' + ((id === 'r01' || id === 'r02') ? 'warn' : '');
+            el('question').textContent = d.question;
+            el('source').textContent = d.source;
+            el('reply').textContent = d.reply;
+            el('actions').innerHTML = '<span class="num">4</span>';
+
+            if (id === 'r01') {
+                addButton('Gửi TA xác minh tài liệu', previewTicket, 'primary');
+                addButton('Báo câu nghi vấn sai', () => status('Đã ghi nhận phản hồi vào log nội bộ. Hãy bấm "Gửi TA xác minh" để tạo ticket chính thức cho TA.'));
+            } else if (id === 'r02') {
+                addButton('Xem gợi ý bước 1 (Preview)', hintPreview, 'primary');
+                addButton('Chuyển TA hỗ trợ', previewTicket);
+            } else if (id === 'r04') {
+                addButton('Ý em là độ lệch chuẩn §3.3', () => {
+                    el('reply').textContent = 'Độ lệch chuẩn (§3.3) đo mức độ phân tán của dữ liệu quanh giá trị trung bình. Nó là căn bậc hai của phương sai và có cùng đơn vị với dữ liệu.\n(Lưu ý: mệnh đề "luôn nhỏ hơn phương sai" trong tài liệu đang có điểm nghi vấn cần kiểm chứng).';
+                    status('Đã làm rõ thuật ngữ theo lựa chọn của học viên.');
+                }, 'primary');
+                addButton('Ý em là khoảng cách tới trung bình', () => {
+                    el('reply').textContent = 'Đó là khoảng cách giữa một điểm dữ liệu x_i so với trung bình (x_i - mean). Giá trị này giúp ta thấy điểm đó nằm trên hay dưới mức trung bình của phòng.';
+                    status('Đã làm rõ theo ý thứ hai.');
+                });
+            } else if (id === 'r03') {
+                addButton('Nhờ TA chỉ vị trí tài liệu', previewTicket);
+            }
+
+            addButton('Bỏ qua / Hoàn tác', () => {
+                pending = null;
+                el('confirmation').classList.add('hidden');
+                status('Đã hủy bỏ thao tác đang chờ. An toàn: Không có ticket nào bị gửi nhầm.');
+            });
+
+            addButton('Chỉnh sửa câu hỏi', () => {
+                el('custom').value = d.question.replaceAll('“', '').replaceAll('”', '');
+                el('custom').focus();
+                status('Bạn có thể sửa lại câu chữ ở ô bên trái rồi bấm Kiểm tra.');
+            });
+
+            status('Đã nạp tình huống từ Fixture. Hành vi chỉ đọc, không gọi tool có rủi ro.');
+        }
+
+        function hintPreview() {
+            el('reply').textContent = '📋 BẢN XEM TRƯỚC GỢI Ý BƯỚC 1 (Chưa chuyển cho bạn):\n\nBước 1: Hãy mở mục §3.5 và đếm số lượng nhân viên trong phòng (có 8 người: 9, 10, 10, 11, 12, 12, 13, 45).\nTiếp theo, nhớ lại công thức trung bình cộng (§3.1) và quy tắc lấy trung vị khi số lượng phần tử là chẵn (§3.2).\n\n⚠️ Trợ lý KHÔNG tính ra con số cuối và KHÔNG xác nhận đáp số khi bài tập còn đang mở.';
+            el('actions').innerHTML = '<span class="num">4</span>';
+            addButton('Xác nhận nhận gợi ý bước 1', () => {
+                hintUsed = true;
+                status('Học viên đã duyệt nhận gợi ý bước 1. Tuyệt đối không gửi đáp án hoặc xác nhận số.');
+            }, 'success');
+            addButton('Bỏ gợi ý này', () => {
+                scenario('r02');
+                status('Đã huỷ xem gợi ý. Không có nội dung nào được lưu lại.');
+            });
+            addButton('Chuyển TA hỗ trợ thêm', previewTicket);
+            status('Trợ lý đang chờ HỌC VIÊN DUYỆT preview. Chưa gửi nội dung vào phiên học.');
+        }
+
+        function previewTicket() {
+            if (!current) return;
+            const item = data[current];
+            pending = {
+                id: current,
+                question: item.question,
+                source: item.source,
+                priority: item.priority || 'Hỗ trợ học tập',
+                time: '22:31:15 (Tối muộn)',
+                status: 'pending',
+                notes: ''
+            };
+            el('ticketPreview').innerHTML = '<strong>Nội dung:</strong> ' + pending.question + '<br><span class="muted tiny">Nguồn liên quan: ' + pending.source + '</span><br><span class="badge warn" style="margin-top:6px">' + pending.priority + '</span>';
+            el('confirmation').classList.remove('hidden');
+            status('Đang ở bước Xác nhận chuyển TA (Quyền duyệt: Học viên). Ticket CHƯA được tạo.');
+        }
+
+        function cancelTicket() {
+            pending = null;
+            el('confirmation').classList.add('hidden');
+            status('Đã hủy chuyển TA. Quyền riêng tư được bảo vệ, TA không nhận được thông báo.');
+        }
+
+        function confirmTicket() {
+            if (!pending) return;
+            tickets.push({ ...pending, num: tickets.length + 1 });
+            pending = null;
+            el('confirmation').classList.add('hidden');
+            status('ĐÃ GHI NHẬN TICKET! Do đang là 22:30 (ngoài ca 08:00–22:00), ticket đã vào Hàng chờ đêm của TA. Mở tab "Portal TA" để theo dõi.');
+            renderTickets();
+        }
+
+        function filterTickets(f) {
+            currentFilter = f;
+            el('btnFilterAll').className = f === 'all' ? 'selected' : '';
+            el('btnFilterPending').className = f === 'pending' ? 'selected' : '';
+            el('btnFilterProc').className = f === 'processing' ? 'selected' : '';
+            renderTickets();
+        }
+
+        function updateTicketStatus(num, newStatus) {
+            const t = tickets.find(x => x.num === num);
+            if (t) {
+                t.status = newStatus;
+                renderTickets();
+            }
+        }
+
+        function saveNote(num) {
+            const inputEl = el('noteInput_' + num);
+            const t = tickets.find(x => x.num === num);
+            if (t && inputEl) {
+                t.notes = inputEl.value.trim();
+                t.status = 'resolved';
+                renderTickets();
+            }
+        }
+
+        function renderTickets() {
+            el('count').textContent = tickets.length;
+            el('queueCount').textContent = tickets.length + ' yêu cầu trong hàng chờ';
+            
+            const list = el('tickets');
+            list.innerHTML = '';
+
+            let filtered = tickets;
+            if (currentFilter === 'pending') filtered = tickets.filter(t => t.status === 'pending');
+            if (currentFilter === 'processing') filtered = tickets.filter(t => t.status === 'processing');
+
+            if (!filtered.length) {
+                list.innerHTML = '<p class="muted">Không có yêu cầu nào trong mục này.</p>';
+                return;
+            }
+
+            filtered.forEach(t => {
+                let card = document.createElement('div');
+                let cardClass = 'ticket';
+                if (t.status === 'processing') cardClass += ' processing';
+                if (t.status === 'resolved') cardClass += ' resolved';
+                card.className = cardClass;
+
+                let statusBadge = '<span class="badge warn">Chờ xử lý (Hàng chờ đêm)</span>';
+                if (t.status === 'processing') statusBadge = '<span class="badge primary">Đang xử lý (TA đã nhận)</span>';
+                if (t.status === 'resolved') statusBadge = '<span class="badge badge-green">Đã phản hồi</span>';
+
+                let notesHtml = '';
+                if (t.notes) {
+                    notesHtml = `<div class="reply-box">
+                        <strong style="color:#027a48;font-size:12.5px">✓ Phản hồi từ TA (Ca trực tiếp nhận):</strong>
+                        <p style="margin:4px 0 0;font-size:13.5px">${t.notes}</p>
+                    </div>`;
+                }
+
+                card.innerHTML = `
+                    <div class="ticket-header">
+                        <div>
+                            <strong>Ticket #${t.num} · ${t.priority}</strong>
+                            <div class="muted tiny">Gửi lúc: ${t.time}</div>
+                        </div>
+                        <div>${statusBadge}</div>
+                    </div>
+                    <p style="margin:6px 0 10px;font-size:14.5px">${t.question}</p>
+                    <div class="muted tiny" style="background:#f8faff;padding:8px;border-radius:6px;border:1px solid #eef2f6">
+                        <strong>Nguồn liên quan:</strong> ${t.source}
+                    </div>
+                    ${notesHtml}
+                    <div class="ticket-actions">
+                        ${t.status === 'pending' ? `<button class="primary" style="padding:6px 12px;font-size:12.5px" onclick="updateTicketStatus(${t.num}, 'processing')">Tiếp nhận xử lý</button>` : ''}
+                        <button style="padding:6px 12px;font-size:12.5px" onclick="el('replyForm_${t.num}').classList.toggle('hidden')">Ghi chú / Phản hồi</button>
+                        <button class="danger" style="padding:6px 12px;font-size:12.5px" onclick="tickets = tickets.filter(x => x.num !== ${t.num}); renderTickets()">Đóng ticket</button>
+                    </div>
+                    <div id="replyForm_${t.num}" class="hidden" style="margin-top:10px">
+                        <textarea id="noteInput_${t.num}" placeholder="Nhập ghi chú phản hồi của TA gửi cho học viên..." style="min-height:55px;font-size:13px">${t.notes || ''}</textarea>
+                        <button class="success" style="margin-top:6px;font-size:12px;padding:6px 12px" onclick="saveNote(${t.num})">Lưu & Gửi phản hồi</button>
+                    </div>
+                `;
+                list.append(card);
+            });
+        }
+
+        // BỘ PHÂN LOẠI VÀ XỬ LÝ CA LẠ TOÀN DIỆN (EDGE-CASE ENGINE)
+        function customAsk() {
+            let s = el('custom').value.trim();
+            if (!s) {
+                status('Vui lòng nhập câu hỏi ca lạ vào ô bên trái.');
+                return;
+            }
+
+            let low = s.toLowerCase();
+            el('question').textContent = s;
+            el('actions').innerHTML = '<span class="num">4</span>';
+            el('confirmation').classList.add('hidden');
+
+            // 1. TÂM LÝ HỌC VIÊN: Nản chí / tự ti / muốn bỏ cuộc (Hard Test R08)
+            if (/dốt|kém|ngu|nản|bỏ học|không hiểu gì|áp lực|chậm tiêu|tự ti|bất lực/.test(low)) {
+                el('badge').textContent = 'Động viên học tập · Hard Test R08';
+                el('badge').className = 'badge';
+                el('source').textContent = 'Rubric Giáo dục: CẤM nhận xét năng lực người học; gợi ý từng bước nhỏ (§3.2).';
+                el('reply').textContent = 'Đừng nản lòng nhé! Khái niệm mới trong Thống kê mô tả luôn cần thời gian để thấm. AI ở đây để đồng hành học cùng bạn chứ không đánh giá năng lực của bạn.\n\nChúng ta chia nhỏ bài toán ra nhé: Bạn có muốn cùng mình làm một việc rất đơn giản trước tiên: Sắp xếp dãy 8 số lương trong §3.5 theo thứ tự từ bé đến lớn không?';
+                addButton('Cùng làm bước sắp xếp', () => {
+                    el('reply').textContent = 'Tuyệt vời! Dãy số sắp xếp tăng dần là: 9, 10, 10, 11, 12, 12, 13, 45.\nBây giờ ta có 8 giá trị (số chẵn). Theo mục §3.2, giá trị đứng ở giữa vị trí thứ 4 và thứ 5 là bao nhiêu nhỉ?';
+                    status('Học viên đang được dẫn dắt từng bước nhỏ mà không bị lộ đáp án.');
+                }, 'primary');
+                addButton('Chuyển TA hỗ trợ thêm', () => {
+                    data.custom_r08 = { question: s, source: 'Học viên cần hỗ trợ động viên và hướng dẫn học tập', priority: 'Hỗ trợ phương pháp học' };
+                    current = 'custom_r08';
+                    previewTicket();
+                });
+                status('Phát hiện ca tâm lý học viên. AI không đánh giá, chỉ gợi mở bước nhỏ.');
+                return;
+            }
+
+            // 2. NGOÀI THẨM QUYỀN: Xin nộp muộn deadline / gia hạn bài
+            if (/nộp muộn|nộp trễ|gia hạn|xin thêm thời gian|trễ hạn|chậm nộp/.test(low)) {
+                el('badge').textContent = 'Ngoài thẩm quyền · Hạn nộp bài tập';
+                el('badge').className = 'badge alert-red';
+                el('source').textContent = 'Data B: Bài tập 3 hạn nộp 13/11/2026 23:59. AI không có thẩm quyền đổi hạn nộp.';
+                el('reply').textContent = 'Hạn nộp Bài tập 3 là cố định: 23:59 ngày 13/11/2026 (theo Data B trang khoá học).\n\nTrợ lý AI TUYỆT ĐỐI KHÔNG CÓ THẨM QUYỀN gia hạn hoặc duyệt nộp muộn. Nếu bạn có lý do chính đáng hoặc sự cố kỹ thuật, bạn cần gửi ticket để Giảng viên/TA xem xét theo quy chế môn học.';
+                addButton('Gửi lý do xin gia hạn tới TA', () => {
+                    data.custom_ext = { question: s, source: 'Xin gia hạn deadline Bài tập 3 (cần người duyệt)', priority: 'Yêu cầu quy chế / Deadline' };
+                    current = 'custom_ext';
+                    previewTicket();
+                }, 'primary');
+                addButton('Xem lại hạn bài tập 3', () => scenario('r02'));
+                status('Từ chối ngoài thẩm quyền. Cung cấp đường chuyển người chính thức.');
+                return;
+            }
+
+            // 3. TÀI LIỆU KHÔNG CHỈ ĐỊNH: Hỏi hàm Excel (R06)
+            if (/excel|hàm.*excel|stdev|var\.s|var\.p|stdev\.s|stdev\.p|hàm gì|công thức excel/.test(low)) {
+                el('badge').textContent = 'Tài liệu không chỉ định hàm cụ thể · R06';
+                el('badge').className = 'badge warn';
+                el('source').textContent = 'Data B ghi: "Bài tập làm bằng bảng tính". Data A không chỉ định tên hàm STDEV.S hay STDEV.P.';
+                el('reply').textContent = 'Tài liệu khoá học chỉ yêu cầu làm bài bằng bảng tính mà không quy định bắt buộc hàm Excel cụ thể nào.\n\nTrong Excel:\n• STDEV.S: tính độ lệch chuẩn mẫu (chia n-1)\n• STDEV.P: tính độ lệch chuẩn tổng thể (chia N)\nĐể đảm bảo không bị trừ điểm, bạn nên hỏi TA để xác nhận công thức mà giảng viên mong muốn áp dụng trong bài 3.';
+                addButton('Hỏi TA về hàm được chấp nhận', () => {
+                    data.custom_excel = { question: s, source: 'Xác nhận hàm bảng tính chuẩn cho Bài 3', priority: 'Xác nhận công cụ khoá học' };
+                    current = 'custom_excel';
+                    previewTicket();
+                }, 'primary');
+                addButton('Xem lại mục §3.3 độ lệch chuẩn', () => scenario('r04'));
+                status('Không bịa quy chuẩn khoá học khi tài liệu chưa chỉ định.');
+                return;
+            }
+
+            // 4. BUỔI CHƯA MỞ TÀI LIỆU: Buổi 4 đến 10 (R07)
+            if (/buổi\s*[4-9]|buổi\s*10|p-value|kiểm định|hồi quy|trực quan hoá|làm sạch|xác suất|phân phối chuẩn|dự án/.test(low)) {
+                el('badge').textContent = 'Chưa mở tài liệu · Chỉ có tên đề cương';
+                el('badge').className = 'badge warn';
+                
+                let sessionName = 'Nội dung thuộc các buổi sau (Buổi 4–10)';
+                if (/buổi\s*4|trực quan/.test(low)) sessionName = 'Buổi 4: Trực quan hoá dữ liệu';
+                else if (/buổi\s*5|xác suất/.test(low)) sessionName = 'Buổi 5: Xác suất cơ bản';
+                else if (/buổi\s*6|chuẩn/.test(low)) sessionName = 'Buổi 6: Phân phối chuẩn';
+                else if (/buổi\s*7|p-value|kiểm định/.test(low)) sessionName = 'Buổi 7: Kiểm định giả thuyết và p-value';
+                else if (/buổi\s*8|hồi quy/.test(low)) sessionName = 'Buổi 8: Hồi quy tuyến tính';
+                else if (/buổi\s*9|làm sạch/.test(low)) sessionName = 'Buổi 9: Làm sạch dữ liệu';
+                else if (/buổi\s*10|dự án/.test(low)) sessionName = 'Buổi 10: Dự án cuối khoá';
+
+                el('source').textContent = `Data B: Đề cương có "${sessionName}". Tài liệu chi tiết CHƯA ĐƯỢC MỞ (chỉ mở Buổi 1, 2, 3).`;
+                el('reply').textContent = `Chủ đề này dự kiến sẽ học tại "${sessionName}".\n\nHiện tại khoá học mới mở Buổi 1, 2, 3 nên tài liệu chi tiết của buổi này chưa được phát hành. Mình không thể giảng sâu theo nội dung khoá khi chưa có tài liệu chính thức. Chúng mình hãy tập trung hoàn thành tốt kiến thức Buổi 3 trước nhé!`;
+                addButton('Xem các bài đã mở (Buổi 1–3)', () => scenario('r09'));
+                status('Giới hạn phạm vi: Chỉ giảng theo các buổi đã học.');
+                return;
+            }
+
+            // 5. NGOÀI GIỜ HỖ TRỢ / GIỜ TRỰC CỦA TA
+            if (/giờ trực|giờ hỗ trợ|ta có trực|mấy giờ.*trực|bây giờ.*trả lời|đêm rồi|ngoài giờ/.test(low)) {
+                el('badge').textContent = 'Thông tin khung giờ hỗ trợ TA';
+                el('badge').className = 'badge';
+                el('source').textContent = 'Data B: Khung giờ TA hỗ trợ là 08:00 – 22:00 hàng ngày.';
+                el('reply').textContent = 'Khung giờ hỗ trợ trực tiếp của TA là từ 08:00 đến 22:00.\n\nHiện tại hệ thống đang giả lập mốc 22:30 (ngoài ca trực). Bạn vẫn có thể gửi câu hỏi qua nút "Chuyển TA", ticket sẽ được lưu an toàn vào hàng chờ và TA sẽ ưu tiên giải đáp vào đầu ca trực sáng mai (từ 08:00). Trợ lý AI vẫn hỗ trợ bạn tự học 24/7!';
+                addButton('Chuyển câu hỏi vào hàng chờ TA', () => {
+                    data.custom_night = { question: s, source: 'Gửi ngoài ca trực (22:30 đêm)', priority: 'Câu hỏi đêm' };
+                    current = 'custom_night';
+                    previewTicket();
+                }, 'primary');
+                status('Cung cấp thông tin giờ trực minh bạch. Không hứa hẹn phản hồi ngay ngoài giờ.');
+                return;
+            }
+
+            // 6. CẤM ĐĂNG FAQ
+            if (/slide\s*12|faq|đăng.*lớp|công bố.*lớp/.test(low)) {
+                if (/slide\s*12/.test(low)) {
+                    scenario('r03');
+                } else {
+                    el('badge').textContent = 'CẤM QUYỀN: dang_FAQ';
+                    el('badge').className = 'badge alert-red';
+                    el('source').textContent = 'Chính sách: Tool dang_FAQ bị CẤM đối với AI để ngăn ngừa lan truyền thông tin sai lệch cho cả lớp.';
+                    el('reply').textContent = 'Công cụ đăng FAQ cả lớp (`dang_FAQ`) bị CẤM TUYỆT ĐỐI đối với Trợ lý AI.\n\nNếu AI đăng một kiến thức chưa kiểm chứng lên FAQ, toàn bộ học viên trong lớp có thể học sai và không thể "unlearn" được. Chỉ Giảng viên mới có quyền kiểm duyệt và biên tập FAQ chung.';
+                    addButton('Gửi phản ánh cho TA xem xét', () => {
+                        data.custom_faq = { question: s, source: 'Đề xuất nội dung cho FAQ khoá học', priority: 'Đề xuất FAQ' };
+                        current = 'custom_faq';
+                        previewTicket();
+                    });
+                    status('Tool dang_FAQ bị cấm hoàn toàn ở tầng quyền hạn.');
+                }
+                return;
+            }
+
+            // 7. CÁC CA LIÊN QUAN ĐẾN BÀI 3, BÀI 2, §3.3
+            if (/bài\s*(tập\s*)?3|đáp\s*số|giải hộ|câu b/.test(low)) {
+                scenario('r02');
+                return;
+            }
+            if (/3\.3|luôn nhỏ|phương sai|độ lệch chuẩn/.test(low)) {
+                scenario('r01');
+                return;
+            }
+            if (/bài\s*(tập\s*)?2/.test(low)) {
+                scenario('r09');
+                return;
+            }
+            if (/độ lệch/.test(low)) {
+                scenario('r04');
+                return;
+            }
+
+            // 8. FALLBACK AN TOÀN KHI KHÔNG CÓ TRONG FIXTURE
+            el('badge').textContent = 'Không tìm thấy căn cứ trong tài liệu';
+            el('badge').className = 'badge warn';
+            el('source').textContent = 'Fixture Data A/B: Không có đoạn tài liệu tương ứng cho câu hỏi này.';
+            el('reply').textContent = 'Mình chưa tìm thấy căn cứ cho câu hỏi này trong tài liệu Buổi 1, 2, 3 đã mở. Để tránh thông tin sai lệch, mình không suy đoán bừa bãi.\n\nBạn có thể:\n1. Nêu rõ câu hỏi liên quan đến mục nào (§3.1 đến §3.5)?\n2. Gửi câu hỏi này sang cho TA để được kiểm chứng.';
+            addButton('Chuyển câu hỏi cho TA kiểm chứng', () => {
+                data.custom_fallback = { question: s, source: 'Câu hỏi ngoài tài liệu Buổi 3', priority: 'Cần TA xác minh' };
+                current = 'custom_fallback';
+                previewTicket();
+            }, 'primary');
+            addButton('Xóa và nhập lại', () => {
+                el('custom').value = '';
+                el('custom').focus();
+            });
+            status('Không bịa nguồn. Tuân thủ nguyên tắc minh bạch HAX G1/G2.');
+        }
+
+        function resetAll() {
+            tickets = [];
+            pending = null;
+            current = null;
+            currentFilter = 'all';
+            renderTickets();
+            screen('student');
+            el('question').textContent = 'Học cùng trợ lý: Hiểu đúng bài, không chép đáp số';
+            el('badge').textContent = 'Chọn một tình huống để kiểm tra';
+            el('badge').className = 'badge';
+            el('source').textContent = 'Chỉ dùng tài liệu buổi 3 và trang khoá học dựng. Tài liệu không có slide số.';
+            el('reply').textContent = 'Hãy chọn 1 kịch bản bên trái hoặc nhập câu ca lạ bất kỳ để xem cách hệ thống xử lý khi gặp rủi ro hoặc ngoài thẩm quyền.';
+            el('actions').innerHTML = '<span class="num">4</span>';
+            el('confirmation').classList.add('hidden');
+            el('custom').value = '';
+            status('Đã đặt lại toàn bộ trạng thái demo.');
+        }
+
+        renderTickets();
+    </script>
+</body>
+
+</html>

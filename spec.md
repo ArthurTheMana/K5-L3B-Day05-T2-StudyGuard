@@ -7,7 +7,7 @@
 | Họ và Tên                     | Mã Học Viên   | Việc đã làm / cần xác nhận |
 |-------------------------------|---------------|---|
 | Nguyễn Tài Minh Huy           | 2A202603828   | Chuẩn bị bản nháp §1-§7, phân tích rủi ro, thiết kế UX/autonomy và prototype HTML; cần tự rà soát, kiểm thử trước khi nhận là đã làm |
-| [THÀNH VIÊN 2 - CHỜ XÁC NHẬN] | [MÃ HỌC VIÊN] | [BỔ SUNG phần đã thực sự đọc/chỉnh/sở hữu, ví dụ kiểm chứng risk & UX] |
+| Hoàng Quang Đạt | 2A202603808 | Product UX & Frontend Prototype (§5, §7), mở rộng Edge-Case Engine xử lý ca lạ, thiết kế tương tác Portal TA 2 chiều, ánh xạ HAX/PAIR |
 | Đỗ Anh Thư                    | 2A202603815   | [BỔ SUNG phần đã thực sự đọc/chỉnh/sở hữu, ví dụ autonomy & demo] |
 
 > Không điền tên/mã/đóng góp giả. Cần xác nhận lớp là L3A hay L3B theo danh sách chính thức. Mọi chữ “nhóm chọn” bên dưới là **phương án đề xuất**, chỉ đổi thành quyết định nhóm sau khi các bạn thực sự review.
@@ -93,7 +93,46 @@ Nhãn ① nguồn sự thật, ② mơ hồ, ③ ngoài phạm vi/thẩm quyền
 **Lời hứa đã đổi:** không nói “AI tự giải bài và gửi kết quả”, mà là “AI tìm nguồn, chỉ gợi ý bước đầu; bạn chọn nhận gợi ý hoặc gửi vấn đề cho TA”. Đây là trade-off có chủ đích giữa nhanh và không học sai.
 
 ## §5. Prototype (M3)
+**File:** `prototype/index.html` — ứng dụng web chạy hoàn toàn offline (SPA), không dùng framework ngoài, không backend, không API key (chủ động không lấy bonus API để đảm bảo demo 100% không bao giờ gặp sự cố mạng hay quota).  
+**Công cụ:** HTML5, CSS3, Vanilla JavaScript thuần.  
+**Dữ liệu & Fixture:** Bám sát Data A (Buổi 3 §3.1–§3.5) và Data B (Bài 2 đã đóng có đáp án 6, Bài 3 đang mở hạn 13/11/2026 23:59, giờ TA 08:00–22:00).
 
+### Cấu trúc 2 màn hình tương tác:
+1. **Màn hình 1 · Học viên (Student Interface):**
+   - **Đồng hồ giả lập ngữ cảnh:** Tích hợp bộ đếm giờ thực tế giả lập mốc **22:30 (Đêm) · Ngoài ca trực TA (08:00–22:00)** làm nổi bật bài toán học bài lúc tối muộn.
+   - **5 nút kịch bản dựng sẵn:** Bấm chuyển nhanh R01 (lỗi tài liệu §3.3), R02 (xin đáp án bài 3 đang mở), R04 (hỏi mơ hồ), R09 (bài 2 đã đóng), R03 (hỏi slide 12 không tồn tại).
+   - **Edge-Case Engine (`customAsk`):** Ô nhập tự do kèm 6 chip gợi ý test nhanh các ca hiểm hóc (tâm lý nản chí R08, xin nộp trễ deadline, hỏi hàm Excel R06, hỏi buổi 4–10 chưa mở R07, hỏi ngoài giờ trực, đòi đăng FAQ). Bộ phân loại nhận diện chính xác ngữ cảnh để phản hồi đúng chuẩn mực.
+   - **Cơ chế duyệt 2 bước an toàn:** Khi xem gợi ý bài 3 (chỉ xem preview bước 1, bấm `Xác nhận nhận` mới nạp vào); khi chuyển TA (hiện popup xem lại nội dung và cảnh báo ngoài giờ, bấm `Xác nhận gửi` mới tạo ticket).
+2. **Màn hình 2 · Portal TA (Teacher Assistant Interface):**
+   - **Quản lý hàng chờ 2 chiều:** Nhận ticket theo thời gian thực từ Màn hình 1.
+   - **Phân loại ưu tiên:** Tự động gắn tag độ ưu tiên (`Ưu tiên cao · Nghi vấn lỗi tài liệu` cho R01; `Thắc mắc bài tập đang mở` cho R02).
+   - **Tương tác trực tiếp:** TA có thể bấm **"Tiếp nhận xử lý"** (đổi trạng thái từ `Chờ xử lý (Hàng chờ đêm)` sang `Đang xử lý`), bấm **"Ghi chú / Phản hồi"** để nhập nhận xét gửi ngược lại cho học viên, hoặc đóng ticket.
+   - **Bộ lọc trạng thái:** Lọc theo *Tất cả / Chờ xử lý / Đang xử lý*.
+
+### Minh chứng ảnh đánh số & Bảng ánh xạ HAX / PAIR / Mức tự chủ:
+
+![Màn hình 1 · Giao diện Học viên có đánh số](prototype/01-student.png)
+*Hình 1: Màn hình Học viên — Thể hiện các vị trí [1], [2], [3], [4], [5] tương ứng các nguyên tắc HAX/PAIR và mức tự chủ.*
+
+![Màn hình 2 · Giao diện Portal TA có đánh số](prototype/02-ta.png)
+*Hình 2: Màn hình Portal TA — Thể hiện các vị trí [6], [7], [8] tương ứng luồng chuyển người an toàn và mức tự chủ.*
+
+| Vị trí số | Thể hiện gì trên giao diện | Nguyên tắc HAX / PAIR | Mức tự chủ tương ứng (Autonomy Level) |
+|---|---|---|---|
+| **[1]** | Thẻ trạng thái & nhãn ngữ cảnh (`Cần kiểm chứng · Lỗi nguồn §3.3`, `Bài 3 đang mở · Giới hạn quyền`, `Đã có đáp án · An toàn giải thích`). | **HAX G1** (Làm rõ hệ thống làm được gì) & **HAX G2** (Làm rõ mức độ tin cậy/giới hạn). Không dùng số % confidence giả mạo. | **Tự làm (Chỉ đọc)**: AI tự động phân tích và gắn cờ cảnh báo trạng thái từ fixture. |
+| **[2]** | Khung căn cứ & nguồn trích dẫn sự thật (Truth Source): trích nguyên văn mã mục `Buổi 3 · §3.1-§3.5` hoặc deadline từ Data B. Nói rõ không có slide đánh số. | **HAX G11** (Minh bạch nguyên nhân/căn cứ) & **PAIR Explainability + Trust** (Tạo niềm tin đúng mức qua bằng chứng kiểm chứng được). | **Tự làm (Chỉ đọc)**: Thuộc công cụ `tra_cuu_tai_lieu`, chỉ đọc dữ liệu tĩnh, không suy diễn ngoài nguồn. |
+| **[3]** | Phản hồi của Trợ lý AI: Từ chối giải hộ/xác nhận đáp số bài 3 đang mở; không khẳng định câu sai §3.3; chỉ đưa gợi mở bước 1. | **HAX G10** (Thu hẹp phạm vi khi nghi ngờ / thiếu thông tin). | **Cần người duyệt**: Thuộc công cụ `goi_y_bai_tap`, AI chỉ được tạo preview bước 1, tuyệt đối bị chặn không được tự gửi đáp án. |
+| **[4]** | Cụm nút hành động điều khiển: `Gửi TA xác minh`, `Xem bước gợi ý đầu`, `Bỏ qua / Hoàn tác`, `Chỉnh sửa câu hỏi`. | **HAX G8** (Dễ dàng bỏ qua) & **HAX G9** (Dễ dàng sửa đổi câu hỏi khi AI hiểu sai ý). | **Cần người duyệt**: Cả 2 tool `goi_y_bai_tap` và `chuyen_TA` đều bắt buộc học viên bấm phê duyệt thì mới thực thi. |
+| **[5]** | Hộp trạng thái phản hồi hệ thống: Báo rõ AI đã làm gì, chưa làm gì (*"Đã đọc fixture (chỉ đọc). Chưa gửi hay đăng bất kỳ nội dung nào"*). | **PAIR Feedback & Transparency** (Minh bạch hành động, giúp học viên an tâm không lo bị gửi nhầm). | **Tự làm**: Cập nhật trạng thái hệ thống theo thời gian thực sau mỗi thao tác. |
+| **[6]** | Hàng chờ tiếp nhận của TA: Tổng số lượng ticket đang chờ và các nút lọc trạng thái (*Tất cả / Chờ xử lý / Đang xử lý*). | **PAIR Graceful Failure** (Lối thoát an toàn khi AI không có thẩm quyền hoặc gặp nội dung nghi vấn). | **Cần người duyệt**: Chỉ những ticket được học viên confirm mới được đưa vào hàng chờ của TA. |
+| **[7]** | Thẻ ticket chi tiết: Hiển thị nguyên văn câu hỏi, trích nguồn, tag độ ưu tiên, nút `Tiếp nhận xử lý` và ô nhập `Ghi chú / Phản hồi`. | **HAX G11** (Minh bạch căn cứ) & **PAIR Explainability** (Đưa đầy đủ ngữ cảnh để TA xử lý chính xác). | **Cần người duyệt**: TA là người duyệt xử lý và lưu phản hồi gửi lại cho học viên. |
+| **[8]** | Khung thông báo ca trực TA: Báo rõ giờ hỗ trợ 08:00–22:00, cảnh báo mốc 22:30 đêm nên ticket lưu hàng chờ sáng mai giải quyết. | **HAX G2** (Minh bạch giới hạn dịch vụ) & **PAIR Graceful Failure** (Không hứa hẹn sai lệch SLA khi ngoài ca trực). | **Cần người duyệt / Quy tắc hệ thống**: Chặn hứa hẹn bừa bãi, bảo vệ quyền lợi học viên và thời gian của TA. |
+| **CẤM** | Công cụ `dang_FAQ` hoàn toàn không có nút gọi trên giao diện. | **HAX G1** (Không tạo kỳ vọng sai lệch về thẩm quyền). | **CẤM HOÀN TOÀN**: Tránh rủi ro phát tán kiến thức sai lệch cho toàn thể lớp học. |
+
+### Quyết định thiết kế giao diện:
+- *Đã cân nhắc dùng % chắc chắn (ví dụ: "Độ tin cậy 85%")*: **Đã loại bỏ** vì trong mô hình ngôn ngữ hoặc prototype rule-based, % xác suất không được hiệu chuẩn sẽ gây ra độ tin cậy giả tạo nguy hiểm. Chọn thay thế bằng **nhãn trạng thái ngữ nghĩa** (`Cần kiểm chứng`, `Đang mở`).
+- *Đã cân nhắc nút "Đăng FAQ" bị làm mờ*: **Đã loại bỏ** vì nút mờ vẫn ngầm hiểu là tính năng tồn tại nhưng tạm khóa, có thể gây hiểu lầm hoặc bị bypass bằng DevTools. Quyết định **loại bỏ hoàn toàn khỏi UI**.
+- *Đã cân nhắc cơ chế tự động gửi ticket khi học viên bấm*: **Đã loại bỏ** vì học viên có thể bấm nhầm hoặc đổi ý. Bắt buộc có **bước xác nhận** hiển thị tóm tắt nội dung gửi để học viên nắm quyền quyết định cuối cùng.
 
 ## §6. Tốt là gì: 3 Pass/Fail (đề xuất tự kiểm, không phải kết quả test với người thật)
 
