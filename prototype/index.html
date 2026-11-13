@@ -538,7 +538,7 @@
       <aside class="card sidebar">
         <h2>Thư viện tình huống</h2>
         <div class="small">Chọn một trường hợp để xem cách AI phản hồi, giới hạn và quyền của học viên.</div>
-        <div class="group-title">Rủi ro ưu tiên · Cần demo</div>
+        <div class="group-title">Rủi ro ưu tiên</div>
         <div class="scenario-list"><button type="button" class="scenario" data-scenario="r01"
             onclick="scenario('r01')"><span class="ico">⚠️</span><span><strong>R01 · Lỗi kiến thức
                 nguồn</strong><em>§3.3 có khẳng định sai</em></span></button><button type="button" class="scenario"
@@ -560,7 +560,7 @@
       </aside>
       <main class="card content">
         <div class="meta"><span>📖 Nhập môn phân tích dữ liệu</span><span>•</span><span>Buổi
-            3</span><span>•</span><span>TA: 08:00–22:00 (giả lập)</span></div>
+            3</span><span>•</span><span>TA: 08:00-22:00 (giả lập)</span></div>
         <div class="heading"><span class="step">01</span>
           <div>
             <h2>Tình huống đang xem</h2>
@@ -602,8 +602,8 @@
           </div>
           <div id="feedback" class="notice" role="status" aria-live="polite">Chưa có hành động nào được thực hiện.</div>
         </section>
-        <div class="fineprint"><strong>Nguyên tắc:</strong> G1/G2 – nêu khả năng và giới hạn; G8/G9 – sửa hoặc bỏ thao
-          tác; G10 – thu hẹp khi chưa chắc; G11 – nêu căn cứ; G15 – báo lỗi. PAIR: giải thích, minh bạch, có đường lui.
+        <div class="fineprint"><strong>Nguyên tắc:</strong> G1/G2 - nêu khả năng và giới hạn; G8/G9 - sửa hoặc bỏ thao
+          tác; G10 - thu hẹp khi chưa chắc; G11 - nêu căn cứ; G15 - báo lỗi. PAIR: giải thích, minh bạch, có đường lui.
           <strong>`dang_FAQ` bị cấm</strong>, không được gọi trong demo.</div>
       </main>
     </section>
@@ -616,7 +616,7 @@
         </div><span class="pill" id="queueCount">0 yêu cầu</span>
       </div>
       <div class="notice warning"><strong>Lưu ý:</strong> Đây chỉ là hàng chờ mô phỏng trong trình duyệt. Không gửi
-        thông báo tới TA thật và không cam kết thời gian phản hồi. Giờ hỗ trợ giả lập: 08:00–22:00.</div>
+        thông báo tới TA thật và không cam kết thời gian phản hồi. Giờ hỗ trợ giả lập: 08:00-22:00.</div>
       <div id="tickets">
         <p class="small">Chưa có yêu cầu nào được gửi.</p>
       </div>
@@ -627,7 +627,7 @@
   <script>
     'use strict';
     /* ===== 1. DỮ LIỆU TÌNH HUỐNG (GIỮ NGUYÊN TỪ FILE GỐC) ===== */
-    const data = { r01: { badge: 'Cần kiểm chứng · lỗi nguồn', question: '“Trong §3.3 ghi độ lệch chuẩn luôn nhỏ hơn phương sai, vậy cứ học vậy ạ?”', source: 'Buổi 3 · §3.3 (Data A): “Vì là căn bậc hai, độ lệch chuẩn luôn nhỏ hơn phương sai.” Câu này có trong tài liệu nhưng sai nếu coi là quy tắc luôn đúng. Hai đại lượng có đơn vị khác nhau.', reply: 'Mình tìm thấy câu “độ lệch chuẩn luôn nhỏ hơn phương sai” ở §3.3. Tuy nhiên, khẳng định “luôn nhỏ hơn” không đúng trong mọi trường hợp. Mình không khuyên bạn học thuộc câu này. Bạn có thể gửi chính đoạn này cho TA/giảng viên kiểm tra. Giờ TA là 08:00–22:00, mình không thể hứa giờ trả lời.', kind: 'risk' }, r02: { badge: 'Bài đang mở · giới hạn gợi ý', question: '“Bài 3 em tính ra trung bình 15,25, đúng không? Cho em luôn câu b nhé”', source: 'Data A §3.5: Bài tập 3, 8 mức lương (dữ liệu dựng). Data B: bài tập 3 đang mở, hạn 13/11/2026 23:59. Quy tắc: không xác nhận đáp số/giải hộ.', reply: 'Bài tập 3 đang mở đến 13/11/2026 23:59. Mình không thể xác nhận kết quả hoặc làm câu (b) thay bạn. Mình có thể gợi ý bước đầu, không đưa đáp án.', kind: 'homework' }, r04: { badge: 'Cần làm rõ', question: '“Cái độ lệch ấy là sao ạ?”', source: 'Buổi 3 §3.3: phương sai và độ lệch chuẩn; tin người dùng chưa nói rõ khái niệm nào.', reply: 'Bạn đang hỏi về “độ lệch chuẩn” trong §3.3 hay độ lệch của một giá trị so với trung bình? Chọn một ý để mình giải thích đúng phần nhé.', kind: 'clarify' }, r09: { badge: 'Đã có đáp án · an toàn giải thích', question: '“Đáp án bài 2 hôm nọ vì sao bằng 6?”', source: 'Trang khoá học (Data B): bài tập 2 đã hết hạn 06/11/2026 23:59; đáp án công bố 07/11/2026 là 6.', reply: 'Bài 2 đã hết hạn và đáp án đã công bố. Ta cộng năm số 4 + 8 + 6 + 5 + 7 = 30, sau đó chia 5 được 6. Đây là ví dụ trung bình cộng, theo quy tắc ở Buổi 3 §3.1.', kind: 'simple' }, r03: { badge: 'Không có nguồn', question: '“Slide 12 nói gì về trung vị?”', source: 'Data A chỉ đánh số §3.1–§3.5, KHÔNG có slide số 12. Có nội dung trung vị tại §3.2.', reply: 'Tài liệu buổi 3 không có slide đánh số nên mình không thể trích “slide 12”. Phần trung vị có thật ở §3.2: sắp xếp dữ liệu tăng dần rồi tìm giá trị ở giữa.', kind: 'missing' } };
+    const data = { r01: { badge: 'Cần kiểm chứng · lỗi nguồn', question: '“Trong §3.3 ghi độ lệch chuẩn luôn nhỏ hơn phương sai, vậy cứ học vậy ạ?”', source: 'Buổi 3 · §3.3 (Data A): “Vì là căn bậc hai, độ lệch chuẩn luôn nhỏ hơn phương sai.” Câu này có trong tài liệu nhưng sai nếu coi là quy tắc luôn đúng. Hai đại lượng có đơn vị khác nhau.', reply: 'Mình tìm thấy câu “độ lệch chuẩn luôn nhỏ hơn phương sai” ở §3.3. Tuy nhiên, khẳng định “luôn nhỏ hơn” không đúng trong mọi trường hợp. Mình không khuyên bạn học thuộc câu này. Bạn có thể gửi chính đoạn này cho TA/giảng viên kiểm tra. Giờ TA là 08:00-22:00, mình không thể hứa giờ trả lời.', kind: 'risk' }, r02: { badge: 'Bài đang mở · giới hạn gợi ý', question: '“Bài 3 em tính ra trung bình 15,25, đúng không? Cho em luôn câu b nhé”', source: 'Data A §3.5: Bài tập 3, 8 mức lương (dữ liệu dựng). Data B: bài tập 3 đang mở, hạn 13/11/2026 23:59. Quy tắc: không xác nhận đáp số/giải hộ.', reply: 'Bài tập 3 đang mở đến 13/11/2026 23:59. Mình không thể xác nhận kết quả hoặc làm câu (b) thay bạn. Mình có thể gợi ý bước đầu, không đưa đáp án.', kind: 'homework' }, r04: { badge: 'Cần làm rõ', question: '“Cái độ lệch ấy là sao ạ?”', source: 'Buổi 3 §3.3: phương sai và độ lệch chuẩn; tin người dùng chưa nói rõ khái niệm nào.', reply: 'Bạn đang hỏi về “độ lệch chuẩn” trong §3.3 hay độ lệch của một giá trị so với trung bình? Chọn một ý để mình giải thích đúng phần nhé.', kind: 'clarify' }, r09: { badge: 'Đã có đáp án · an toàn giải thích', question: '“Đáp án bài 2 hôm nọ vì sao bằng 6?”', source: 'Trang khoá học (Data B): bài tập 2 đã hết hạn 06/11/2026 23:59; đáp án công bố 07/11/2026 là 6.', reply: 'Bài 2 đã hết hạn và đáp án đã công bố. Ta cộng năm số 4 + 8 + 6 + 5 + 7 = 30, sau đó chia 5 được 6. Đây là ví dụ trung bình cộng, theo quy tắc ở Buổi 3 §3.1.', kind: 'simple' }, r03: { badge: 'Không có nguồn', question: '“Slide 12 nói gì về trung vị?”', source: 'Data A chỉ đánh số §3.1-§3.5, KHÔNG có slide số 12. Có nội dung trung vị tại §3.2.', reply: 'Tài liệu buổi 3 không có slide đánh số nên mình không thể trích “slide 12”. Phần trung vị có thật ở §3.2: sắp xếp dữ liệu tăng dần rồi tìm giá trị ở giữa.', kind: 'missing' } };
 
     /* ===== 2. TRẠNG THÁI DEMO ===== */
     let current = null;
@@ -702,7 +702,7 @@
     }
     function hintPreview() {
       if (current !== 'r02') return;
-      text('reply', 'Bản xem trước gợi ý (chưa chấp nhận): Bước 1 – Hãy đếm số giá trị trong danh sách §3.5. Tiếp theo, nhắc lại công thức trung bình ở §3.1 và quy tắc trung vị ở §3.2. Mình không xác nhận đáp số khi bài vẫn mở.');
+      text('reply', 'Bản xem trước gợi ý (chưa chấp nhận): Bước 1 - Hãy đếm số giá trị trong danh sách §3.5. Tiếp theo, nhắc lại công thức trung bình ở §3.1 và quy tắc trung vị ở §3.2. Mình không xác nhận đáp số khi bài vẫn mở.');
       setButtons();
       addButton('Chấp nhận gợi ý', () => status('Đã chấp nhận nhận gợi ý bước đầu. Không tiết lộ hoặc kiểm tra đáp án.', 'success'), 'primary');
       addButton('Bỏ gợi ý', () => { scenario('r02'); status('Đã bỏ bản xem trước gợi ý.'); });
@@ -770,7 +770,7 @@
         current = null; pending = null; el('confirmation').classList.add('hidden'); markSelected('');
         text('badge', 'Không đủ dữ liệu để trả lời'); el('badge').className = 'pill warning';
         text('question', raw);
-        text('source', 'Bộ dữ liệu demo chỉ mô phỏng buổi 3 (§3.1–§3.5) và trạng thái hai bài tập. Không có kết quả truy xuất cho câu này.');
+        text('source', 'Bộ dữ liệu demo chỉ mô phỏng buổi 3 (§3.1-§3.5) và trạng thái hai bài tập. Không có kết quả truy xuất cho câu này.');
         text('reply', 'Mình không có căn cứ phù hợp để trả lời chắc chắn. Bạn có thể chỉnh lại câu hỏi hoặc gửi cho TA sau khi xem và xác nhận nội dung.');
         setButtons(); addButton('Nhập lại câu hỏi', () => el('custom').focus(), 'primary');
         status('Không có nguồn phù hợp; hệ thống không bịa nội dung.', 'warning');
