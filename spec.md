@@ -7,7 +7,7 @@
 |-------------------------------|---------------|---|
 | Nguyễn Tài Minh Huy           | 2A202603828   | Chuẩn bị bản nháp §1-§7, phân tích rủi ro, thiết kế UX/autonomy và prototype HTML; cần tự rà soát, kiểm thử trước khi nhận là đã làm |
 | Hoàng Quang Đạt | 2A202603808 | Xây dựng giao diện của Prototype (§5, §7), thiết kế tương tác Portal TA 2 chiều, ánh xạ HAX/PAIR |
-| Đỗ Anh Thư                    | 2A202603815   | [BỔ SUNG phần đã thực sự đọc/chỉnh/sở hữu, ví dụ autonomy & demo] |
+| Đỗ Anh Thư                    | 2A202603815   | Phụ trách & hoàn thiện nội dung §4 phân tích cái giá khi sai & cơ chế guardrail và §6 xây dựng 3 tiêu chí Pass/Fail P1–P3, đánh giá rủi ro còn lại; cần nhóm xác nhận chốt phương án cho goi_y_bai_tap và tự kiểm chứng P1–P3 trên prototype|
 
 > Không điền tên/mã/đóng góp giả. Cần xác nhận lớp là L3A hay L3B theo danh sách chính thức. Mọi chữ “nhóm chọn” bên dưới là **phương án đề xuất**, chỉ đổi thành quyết định nhóm sau khi các bạn thực sự review.
 
