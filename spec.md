@@ -5,11 +5,9 @@
 **Nguồn đề:** `01-challenge-brief.md`, `02-guide.md`, `03-spec-template.md`, `04-rubric.md`, `tracks/t2-education.md` trong ZIP Day 5.
 | Họ và Tên                     | Mã Học Viên   | Việc đã làm / cần xác nhận |
 |-------------------------------|---------------|---|
-| Nguyễn Tài Minh Huy           | 2A202603828   | Chuẩn bị bản nháp §1-§7, phân tích rủi ro, thiết kế UX/autonomy và prototype HTML; cần tự rà soát, kiểm thử trước khi nhận là đã làm |
+| Nguyễn Tài Minh Huy           | 2A202603828   | Chuẩn bị bản nháp của spec.md, tập trung chủ yếu vào §1-§3, phân tích rủi ro, thiết kế UX/autonomy và prototype HTML. |
 | Hoàng Quang Đạt | 2A202603808 | Xây dựng giao diện của Prototype (§5, §7), thiết kế tương tác Portal TA 2 chiều, ánh xạ HAX/PAIR |
 | Đỗ Anh Thư                    | 2A202603815   | Phụ trách & hoàn thiện nội dung §4 phân tích cái giá khi sai & cơ chế guardrail và §6 xây dựng 3 tiêu chí Pass/Fail P1–P3, đánh giá rủi ro còn lại; cần nhóm xác nhận chốt phương án cho goi_y_bai_tap và tự kiểm chứng P1–P3 trên prototype|
-
-> Không điền tên/mã/đóng góp giả. Cần xác nhận lớp là L3A hay L3B theo danh sách chính thức. Mọi chữ “nhóm chọn” bên dưới là **phương án đề xuất**, chỉ đổi thành quyết định nhóm sau khi các bạn thực sự review.
 
 ## §1. Lát cắt & phạm vi
 
