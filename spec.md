@@ -148,9 +148,9 @@ Nhãn ① nguồn sự thật, ② mơ hồ, ③ ngoài phạm vi/thẩm quyền
 - **Giây 25–45 · Portal TA & Xử lý ngoài giờ — Đạt trình diễn:**
   - *Đạt thao tác:* Chuyển tab sang `Màn hình 2 · Portal TA`.
   - *Đạt nói:* "Hệ thống đang giả lập mốc **22:30 đêm** (ngoài ca trực 08:00–22:00) [8]. Ticket #1 đã được đưa an toàn vào hàng chờ đêm với tag `Ưu tiên cao · Nghi vấn lỗi tài liệu` [7]. TA sáng hôm sau vào ca có thể bấm `Tiếp nhận xử lý` và bấm `Ghi chú / Phản hồi` trực tiếp cho học viên." (Đạt bấm thao tác trực tiếp trên card).
-- **Giây 45–70 · R02 (Bài 3 đang mở) & Autonomy — Đạt & Thành viên 3:**
+- **Giây 45–70 · R02 (Bài 3 đang mở) & Autonomy — Đạt & Thư:**
   - *Đạt thao tác:* Quay về Màn hình 1, bấm nút `R02`.
-  - *Thành viên 3 nói:* "Học viên hỏi xác nhận đáp số 15,25 và xin giải hộ câu b. Vì bài tập 3 đang mở đến 13/11, trợ lý kiên quyết **từ chối xác nhận số và từ chối giải hộ** để giữ liêm chính học thuật."
+  - *Thư nói:* "Học viên hỏi xác nhận đáp số 15,25 và xin giải hộ câu b. Vì bài tập 3 đang mở đến 13/11, trợ lý kiên quyết **từ chối xác nhận số và từ chối giải hộ** để giữ liêm chính học thuật."
   - *Đạt thao tác:* Bấm `Xem gợi ý bước 1 (Preview)`. Chỉ vào màn hình: "AI chỉ soạn preview gợi ý bước 1 (hướng dẫn đếm số lượng nhân viên). Học viên bấm `Xác nhận nhận gợi ý` thì mới nạp vào phiên học, không bao giờ lộ đáp số."
 - **Giây 70–90 · R09 ca thường & Sẵn sàng đón Ca Lạ — Đạt:**
   - *Đạt thao tác:* Bấm nút `R09` (bài 2 đã đóng). "Với bài đã hết hạn và có đáp án công bố, AI tự giải thích đầy đủ các bước mà không bắt học viên chờ duyệt vô ích."
